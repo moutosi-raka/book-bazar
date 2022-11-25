@@ -1,0 +1,7 @@
+.menu li a{
+    margin-left: 10px;
+}
+.menu li a:hover{
+/* border-radius: 8px!important; */
+background-color: aqua;
+}
