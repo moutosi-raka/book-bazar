@@ -19,7 +19,10 @@ const Category = () => {
             }
             </div>  
         { bookProduct 
-        && <BookingModel bookProduct={bookProduct}></BookingModel>}
+        && <BookingModel 
+        bookProduct={bookProduct}
+        setBookProduct={setBookProduct}
+        ></BookingModel>}
         </div>
     );
 };

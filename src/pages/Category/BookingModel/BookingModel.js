@@ -1,8 +1,7 @@
 import React from 'react';
-import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 import { format } from 'date-fns';
 
-const BookingModel = ({bookProduct}) => {
+const BookingModel = ({bookProduct, setBookProduct}) => {
     const {book_name, category_name, resale_price} = bookProduct;
     const date = format(new Date(), 'PPpp') ;
     
@@ -24,6 +23,7 @@ const BookingModel = ({bookProduct}) => {
             phone,
             meetingLocation
         }
+        setBookProduct(null);
     }
 
     return (
@@ -48,7 +48,7 @@ const BookingModel = ({bookProduct}) => {
                     <input type="text" value={date} disabled className="input mb-2 input-bordered w-full" />
                     <br></br>
                     <div className='w-full'>
-                    <PrimaryButtom>Submit</PrimaryButtom>
+                    <button className='btn w-full'>Submit</button>
                     </div>
                     </form>
                 </div>
