@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { format } from 'date-fns';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const BookingModel = ({bookProduct, setBookProduct}) => {
     const {book_name, category_name, resale_price} = bookProduct;
+    const {user} = useContext(AuthContext);
     const date = format(new Date(), 'PPpp') ;
     
     const handleBooking = event =>{
@@ -32,10 +34,10 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">Book Category: {category_name}!</h3>
+                    <h3 className="text-lg font-bold">Book Category: {category_name}</h3>
                     <form onSubmit={handleBooking}>
-                    <input name='buyerName' type="text" placeholder="buyer name" className="input mb-2 input-bordered w-full " />
-                    <input name='email' type="email" placeholder="email address" className="input mb-2 input-bordered w-full" />
+                    <input name='buyerName' type="text" defaultValue={user?.displayName} disabled className="input mb-2 input-bordered w-full " />
+                    <input name='email' type="email" defaultValue={user?.email} disabled className="input mb-2 input-bordered w-full" />
                     <input name='bookName' type="text" value={book_name}
                     disabled className="input mb-2 input-bordered w-full" />
                     <input type="text" value={ resale_price}
