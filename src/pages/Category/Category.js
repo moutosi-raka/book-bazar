@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookCart from './BookCart/BookCart';
+import BookingModel from './BookingModel/BookingModel';
 
 const Category = () => {
     const categories = useLoaderData();
-    
+    const [bookProduct, setBookProduct] = useState(null);
     return (
         <div>
             <h1 className='text-3xl'>Category</h1>
@@ -13,9 +14,12 @@ const Category = () => {
               categories.map(category => <BookCart
               key={category._id}
               category={category}
+              setBookProduct={setBookProduct}
               ></BookCart>)  
             }
             </div>  
+        { bookProduct 
+        && <BookingModel bookProduct={bookProduct}></BookingModel>}
         </div>
     );
 };
