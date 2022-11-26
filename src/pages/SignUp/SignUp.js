@@ -1,20 +1,40 @@
-import React, { useState } from 'react';
-import { useForm } from "react-hook-form";
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
-const Login = () => {
+const SignUp = () => {
     const { register,formState: { errors }, handleSubmit } = useForm();
-    const [data, setDate] = useState('');
 
     const handleLogin = data =>
     {
         console.log(data);
     }
     return (
-        <div className='h-[700px] flex justify-center items-center'>
+        <div className='my-20 flex justify-center items-center'>
             <div className='p-8 shadow-2xl rounded-lg w-1/2'>
-                <h2 className='text-4xl font-bold text-center'>Login</h2>
+                <h2 className='text-4xl font-bold text-center'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Your Name</span>
+                        </label>
+                        <input type="text"
+                            {...register("name", 
+                            {required: "Name is required"})}
+                            placeholder="Your name" 
+                            className="input input-bordered" />
+                             {errors.name && <p className='text-red-700' role="alert">{errors.name?.message}</p>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">PhotoURL</span>
+                        </label>
+                        <input type="text"
+                            {...register("photoURL")}
+                            placeholder="photoURL" 
+                            className="input input-bordered" />
+                           
+                    </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -26,12 +46,6 @@ const Login = () => {
                             className="input input-bordered" />
                              {errors.email && <p className='text-red-700' role="alert">{errors.email?.message}</p>}
                     </div>
-                    <select className="select select-bordered w-full mt-8"
-                     {...register("userType", { required: true })}
-                    >
-                        <option value='buyer' selected>Buyer</option>
-                        <option value='seller'>Seller</option>
-                    </select>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
@@ -43,9 +57,9 @@ const Login = () => {
                             className="input input-bordered" />
                             {errors.password && <p className='text-red-700' role="alert">{errors.password?.message}</p>}
                     </div>
-                    <input className='w-full btn my-8 text-white' type="submit" value='Login' />
+                    <input className='w-full btn my-8 text-white' type='submit' value="Sign Up" />
                 </form>
-                <p className='text-center'>New to Book Bazar? <Link className='text-secondary' to="/signup">Create New Account</Link></p>
+                <p className='text-center'>Already have a account? <Link className='text-secondary' to="/login">Login</Link></p>
                 <div className="divider">OR</div>
 
                      <button className='btn btn-outline w-full'>Continue With Google</button>
@@ -54,4 +68,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
