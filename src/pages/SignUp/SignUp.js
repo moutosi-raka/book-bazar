@@ -1,22 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
     const { register,formState: { errors }, handleSubmit } = useForm();
-    const {createUser} = useContext(AuthContext)
-
+    const {createUser} = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
     const handleLogin = data =>
     {
         console.log(data);
+        setSignUpError('');
         createUser(data.email, data.password)
         .then(res=> {
             const user = res.user;
             console.log(user);
+            toast.success('user created succrssfully')
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            setSignUpError(error.message)
+        })
     }
+
     return (
         <div className='my-20 flex justify-center items-center'>
             <div className='p-8 shadow-2xl rounded-lg w-1/2'>
@@ -64,6 +71,11 @@ const SignUp = () => {
                              minLength: {value: 6, message: 'password must be 6 characters.'}})} placeholder="password" 
                             className="input input-bordered" />
                             {errors.password && <p className='text-red-700' role="alert">{errors.password?.message}</p>}
+                    </div>
+                    <div>
+                        {
+                        signUpError && <p className='text-red-700'>{signUpError}</p>
+                       }
                     </div>
                     <input className='w-full btn my-8 text-white' type='submit' value="Sign Up" />
                 </form>
