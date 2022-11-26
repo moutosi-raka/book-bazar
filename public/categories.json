@@ -1,0 +1,17 @@
+[
+    {
+        "category_id": 1,
+        "category_name": "Nobel",
+        "category_img": "https://i.ibb.co/4Sj99Dp/nobel.jpg"
+    },
+    {
+        "category_id": 2,
+        "category_name": "Poetry",
+        "category_img": "https://i.ibb.co/WPRk2YJ/poetry.jpg"
+    },
+    {
+        "category_id": 1,
+        "category_name": "Biograpy",
+        "category_img": "https://i.ibb.co/njgrMcy/biography.jpg"
+    }
+]

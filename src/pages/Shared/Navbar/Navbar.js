@@ -10,7 +10,7 @@ const Navbar = () => {
   </>
   return (
     <div>
-      <h1 className="display-1  text-center py-8 "><Link className='text-decoration-none text-7xl f-family-abril' to='/'>Old Furniture</Link></h1>
+      <h1 className="display-1  text-center py-8 "><Link className='text-decoration-none text-7xl f-family-abril' to='/'>Book Bazar</Link></h1>
       <div className="navbar border border-4 border-l-0 border-r-0 position-sticky">
         <div className="navbar-start">
           <div className="dropdown">
@@ -21,7 +21,7 @@ const Navbar = () => {
               {menuItems}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-xl">Old Furniture</Link>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">Book Bazar</Link>
         </div>
         <div className=" hidden lg:flex">
           <ul className="menu menu-horizontal p-0">

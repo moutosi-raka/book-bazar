@@ -9,6 +9,7 @@ module.exports = {
         furniture: {
         
 primary: "#5b0960",
+"primary-100": "#f5dff3a8",
         
 secondary: "#d76ace",
         
