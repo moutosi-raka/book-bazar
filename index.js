@@ -19,12 +19,20 @@ async function run(){
     try{
        
         const bookCategoriesCollection = client.db('bookBazar').collection('allCategories');
+        const bookingsCollection = client.db('bookBazar').collection('bookings');
 
         app.get('/category/:id', async(req, res)=>{
             const id = parseInt(req.params.id);
             const query = {category_id: id};
             const cursor = await bookCategoriesCollection.find(query).toArray();
             res.send(cursor)
+        })
+
+        app.post('/bookings', async(req, res)=>{
+            const booking = req.body;
+            console.log(booking);
+            const result = await bookingsCollection.insertOne(booking);
+            res.send(result);
         })
     }
     finally{
