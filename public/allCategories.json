@@ -1,5 +1,5 @@
 [
-    {   "_id": 1,
+    {  
         "category_id": 1,
         "category_name": "Nobel",
         "location": "Dhaka",
@@ -9,7 +9,7 @@
         "Year_of_use": "3 months",
         "img": "https://i.ibb.co/4Sj99Dp/nobel.jpg"
     },
-    {   "_id": 2,
+    {  
         "category_id": 1,
         "category_name": "Nobel",
         "location": "Dhaka",
@@ -20,7 +20,6 @@
         "img": "https://i.ibb.co/4Sj99Dp/nobel.jpg"
     },
     {
-        "_id": 3,
         "category_id": 2,
         "category_name": "Poetry",
         "location": "Dhaka",
@@ -31,7 +30,6 @@
         "img": "https://i.ibb.co/WPRk2YJ/poetry.jpg"
     },
     {
-        "_id": 4,
         "category_id": 2,
         "category_name": "Poetry",
         "location": "Khulna",
@@ -42,7 +40,6 @@
         "img": "https://i.ibb.co/WPRk2YJ/poetry.jpg"
     },
     {
-        "_id": 5,
         "category_id": 3,
         "category_name": "Biograpy",
         "location": "Sylhet",
@@ -53,7 +50,7 @@
         "img": "https://i.ibb.co/njgrMcy/biography.jpg"
     },
     {
-        "_id": 6,
+    
         "category_id": 3,
         "category_name": "Biograpy",
         "location": "CTG",
