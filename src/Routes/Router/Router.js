@@ -11,6 +11,7 @@ import MyProduct from "../../pages/Dashboard/MyProduct/MyProduct";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
+import PrivateRouter from "../PrivateRouter/PrivateRouter";
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Category></Category>,
+                element: <PrivateRouter><Category></Category></PrivateRouter>,
                 loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
             },
             {
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
         children:[
             {
                 path: "/dashboard",

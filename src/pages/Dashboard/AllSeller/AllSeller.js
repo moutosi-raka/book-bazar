@@ -4,7 +4,7 @@ import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 const AllSeller = () => {
     return (
         <div>
-            <h1 className='text-3xl f-family-abril fw  my-8'>My Product</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8'>All Seller List</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
