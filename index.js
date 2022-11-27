@@ -75,18 +75,13 @@ async function run(){
             res.send(buyerUser);
         })
 
-        app.get('/all-user-info/admin/:email', async(req, res)=>{
+        app.get('/user-info/:email', async(req, res)=>{
             const email = req.params.email;
             const query = {userEmail: email};
             const user = await allUsersCollection.findOne(query);
-            res.send({isAdmin: user?.role === 'admin'});
+            res.send(user);
         })
-        app.get('/all-user-info/seller/:email', async(req, res)=>{
-            const email = req.params.email;
-            const query = {userEmail: email};
-            const user = await allUsersCollection.findOne(query);
-            res.send({isSeller: user?.role === 'seller'});
-        })
+
 
         app.get('/all-user-info/role', async(req,res)=>{
             const role = req.query.role;
