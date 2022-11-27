@@ -43,12 +43,6 @@ const Login = () => {
                             className="input input-bordered" />
                              {errors.email && <p className='text-red-700' role="alert">{errors.email?.message}</p>}
                     </div>
-                    <select className="select select-bordered w-full mt-8"
-                     {...register("userType", { required: true })}
-                    >
-                        <option value='buyer' selected>Buyer</option>
-                        <option value='seller'>Seller</option>
-                    </select>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>

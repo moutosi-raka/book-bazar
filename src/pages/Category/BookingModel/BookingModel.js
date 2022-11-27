@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { format } from 'date-fns';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const BookingModel = ({bookProduct, setBookProduct}) => {
-    const {book_name, category_name, resale_price} = bookProduct;
+    const {book_name,img, category_name, resale_price} = bookProduct;
     const {user} = useContext(AuthContext);
     const date = format(new Date(), 'PPpp') ;
     
@@ -20,12 +21,30 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
             category_name,
             buyerName,
             buyerEmail,
+            user_uid: user.uid,
             book_name,
+            img,
             price: resale_price,
             phone,
             meetingLocation
         }
-        setBookProduct(null);
+        fetch('http://localhost:5000/bookings',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+            if(data.acknowledged)
+            {
+                setBookProduct(null);
+                toast.success('Booked confirmed')
+            }    
+        })
+        
     }
 
     return (
