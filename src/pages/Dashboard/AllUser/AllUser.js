@@ -1,10 +1,20 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
+
 
 const AllUser = () => {
+    const role = 'buyer';
+    const {data: buyerUser = []} = useQuery({
+        queryKey: ['all-user-info', role],
+        queryFn: async()=>{
+            const res = await fetch(`http://localhost:5000/all-user-info?role=${role}`);
+            const data = await res.json();
+            return data;
+        }
+    })
     return (
         <div>
-            <h1 className='text-3xl f-family-abril fw  my-8'>All User List</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8'>All Buyer List</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -16,12 +26,15 @@ const AllUser = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>raka@gmail</td>
-                            <td><button className='btn bg-red-700 text-white'>Delete</button></td>
-                        </tr>
+                        {
+                            buyerUser.map((buyer, i) => <tr key={buyer._id}>
+                                <th>{i+1}</th>
+                                <td>{buyer.userName}</td>
+                                <td>{buyer.userEmail}</td>
+                                <td><button className='btn bg-red-700 text-white'>Delete</button></td>
+                            </tr>)
+                        }
+                       
                     </tbody>
                 </table>
             </div>
