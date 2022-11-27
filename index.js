@@ -69,15 +69,27 @@ async function run(){
             res.send(result);
         })
 
-        // app.get('/all-user-info', async(req, res)=>{
-        //     const query = {};
-        //     const buyerUser = await allUsersCollection.find(query).toArray();
-        //     res.send(buyerUser);
-        // })
+        app.get('/all-user-info', async(req, res)=>{
+            const query = {};
+            const buyerUser = await allUsersCollection.find(query).toArray();
+            res.send(buyerUser);
+        })
+
+        app.get('/all-user-info/admin/:email', async(req, res)=>{
+            const email = req.params.email;
+            const query = {userEmail: email};
+            const user = await allUsersCollection.findOne(query);
+            res.send({isAdmin: user?.role === 'admin'});
+        })
+        app.get('/all-user-info/seller/:email', async(req, res)=>{
+            const email = req.params.email;
+            const query = {userEmail: email};
+            const user = await allUsersCollection.findOne(query);
+            res.send({isSeller: user?.role === 'seller'});
+        })
 
         app.get('/all-user-info/role', async(req,res)=>{
             const role = req.query.role;
-            console.log(role);
             const query = {role: role}
             const buyerUser = await allUsersCollection.find(query).toArray();
             res.send(buyerUser)
