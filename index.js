@@ -20,6 +20,7 @@ async function run(){
        
         const bookCategoriesCollection = client.db('bookBazar').collection('allCategories');
         const bookingsCollection = client.db('bookBazar').collection('bookings');
+        const allUsersCollection =  client.db('bookBazar').collection('allusersInfo');
 
         app.get('/category/:id', async(req, res)=>{
             const id = parseInt(req.params.id);
@@ -39,6 +40,12 @@ async function run(){
             const booking = req.body;
             console.log(booking);
             const result = await bookingsCollection.insertOne(booking);
+            res.send(result);
+        })
+
+        app.post('/all-user-info', async(req,res)=>{
+            const userInfo = req.body;
+            const result = await allUsersCollection.insertOne(userInfo);
             res.send(result);
         })
     }
