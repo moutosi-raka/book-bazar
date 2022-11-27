@@ -22,6 +22,14 @@ function verifyJWT(req, res, next){
         return res.status(401).send('unauthoried access')
     }
     const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, process.env.ACCESS_TOKEN, function(err, decoded){
+        if(err){
+            return res.status(403).send({message: 'forbidden access'})
+        }
+        req.decoded = decoded;
+        next();
+    })
 }
 
 async function run(){
@@ -40,6 +48,10 @@ async function run(){
 
         app.get('/bookings', verifyJWT, async(req, res)=>{
             const email = req.query.email;
+            const decodedEmail = req.decoded.email;
+            if( email !== decodedEmail){
+                return res.status(403).send({message: 'forbidden access'})
+            }
             const query = {buyerEmail: email}
             const bookings = await bookingsCollection.find(query).toArray();
             res.send(bookings);
@@ -47,7 +59,6 @@ async function run(){
 
         app.post('/bookings', async(req, res)=>{
             const booking = req.body;
-            console.log(booking);
             const result = await bookingsCollection.insertOne(booking);
             res.send(result);
         })
@@ -56,6 +67,14 @@ async function run(){
             const userInfo = req.body;
             const result = await allUsersCollection.insertOne(userInfo);
             res.send(result);
+        })
+
+        app.get('/all-user-info', async(req,res)=>{
+            const role = req.query.role;
+            console.log(role);
+            const query = {role: role}
+            const buyerUser = await allUsersCollection.find(query).toArray();
+            res.send(buyerUser)
         })
 
         app.get('/jwt', async(req,res)=>{
