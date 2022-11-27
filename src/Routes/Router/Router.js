@@ -3,6 +3,7 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../pages/Blog/Blog";
 import Category from "../../pages/Category/Category";
+import AddProduct from "../../pages/Dashboard/AddProduct/AddProduct";
 import AllSeller from "../../pages/Dashboard/AllSeller/AllSeller";
 import AllUser from "../../pages/Dashboard/AllUser/AllUser";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
@@ -13,6 +14,7 @@ import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -56,7 +58,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/myproduct",
-                element: <MyProduct></MyProduct>
+                element: <SellerRoute><MyProduct></MyProduct></SellerRoute>
+            },
+            {
+                path: "/dashboard/addproduct",
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: "/dashboard/allseller",

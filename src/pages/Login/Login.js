@@ -21,12 +21,12 @@ const Login = () => {
     }
     const handleLogin = data =>
     {
-        console.log(data.userType);
         setLoginError('');
         login(data.email, data.password)
         .then(res=> {
             const user = res.user;
             setLoginUserEmail(user.email)
+            // data.reset();
            
         })
         .catch(error => {
