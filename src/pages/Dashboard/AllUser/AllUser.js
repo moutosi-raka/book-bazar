@@ -31,7 +31,7 @@ const AllUser = () => {
                                 <th>{i+1}</th>
                                 <td>{buyer.userName}</td>
                                 <td>{buyer.userEmail}</td>
-                                <td><button className='btn bg-red-700 text-white'>Delete</button></td>
+                                <td><button className='btn btn-sm bg-red-700 text-white'>Delete</button></td>
                             </tr>)
                         }
                        

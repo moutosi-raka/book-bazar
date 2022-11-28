@@ -2,12 +2,16 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 import useUser from '../hooks/useUser/useUser';
+import Loading from '../pages/Loading/Loading';
 import Navbar from '../pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
     const {user} = useContext(AuthContext);
-    const [dbUser] = useUser(user.email)
+    const [dbUser, isLoading] = useUser(user.email)
 
+    if(isLoading){
+        return <Loading></Loading>
+    }
     
     return (
         <div>
