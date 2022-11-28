@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
-import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
+
 
 const AllSeller = () => {
     const role = 'seller';

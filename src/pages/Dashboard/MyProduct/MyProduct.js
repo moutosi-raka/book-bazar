@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
+import toast from 'react-hot-toast';
+
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
-import MyProductCart from './MyProductCart';
+
 
 const MyProduct = () => {
     const {user} = useContext(AuthContext)
     const url = `http://localhost:5000/category/product?email=${user?.email}`;
 
-    const {data: myProducts = []} = useQuery({
+    const {data: myProducts = [], refetch} = useQuery({
         queryKey: ['category', user?.email],
         queryFn: async()=>{
             const res = await fetch(url, {
@@ -20,18 +21,67 @@ const MyProduct = () => {
             return data;
         }
     })
+    
+    const handleAds = id =>{
+        fetch(`http://localhost:5000/category/product/${id}`,{
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.modifiedCount>0){
+                toast.success('add ads item successfully');
+                refetch();
+            }
+        })
+    }
 
     return (
         <div>
             <h1 className='text-3xl f-family-abril fw  my-8'>My Product {myProducts.length}</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2  gap-4 my-12'>
-            {
-              myProducts.map(myProduct => <MyProductCart
-              key={myProduct._id}
-              myProduct={myProduct}
-              ></MyProductCart>)  
-            }
-            </div>
+            <div className="overflow-x-auto w-full">
+  <table className="table w-full">
+    
+    <thead>
+      <tr>
+        <th></th>
+        <th>Book Img</th>
+        <th>Book Name</th>
+        <th>price</th>
+        <th>Sold Status</th>
+        <th>Add Ads</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {
+            myProducts.map((myProduct, i)=>  <tr key={myProduct._id}>
+            <th>{i+1}</th>
+            <td>
+              <div className="flex items-center space-x-3">
+                <div className="avatar">
+                  <div className="mask mask-squircle w-12 h-12">
+                    <img src={myProduct.img} alt="Avatar Tailwind CSS Component" />
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>{myProduct.book_name}</td>
+            <td>{myProduct.resale_price}</td>
+            <td>sold</td>
+            <th>
+              {!myProduct.addADS &&<button onClick={()=> handleAds(myProduct._id)} className="btn btn-primary text-white btn-xs ">Add ADS</button>}
+            </th>
+            <th>
+              <button className="btn btn-red-700 text-white btn-xs ">Delete</button>
+            </th>
+          </tr>)
+        }   
+    </tbody>  
+  </table>
+</div>
         </div>
     );
 };

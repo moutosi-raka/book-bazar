@@ -2,13 +2,17 @@ import { Result } from 'postcss';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
+import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import useUser from '../../../hooks/useUser/useUser';
 
 const AddProduct = () => {
     const {user} = useContext(AuthContext);
-    // console.log(user)
-    const [dbUser, isLoading] = useUser(user?.email)
+    const navigate = useNavigate();
+    const [dbUser, isLoading] = useUser(user?.email);
+    
+    const date = format(new Date(), 'PPpp') ;
  
     const { register, formState: { errors }, handleSubmit } = useForm();
     const imgHostKey= process.env.REACT_APP_img_key;
@@ -16,7 +20,7 @@ const AddProduct = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image',image);
-        const url =`https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`
+        const url =`https://api.imgbb.com/1/upload?key=${imgHostKey}`
         fetch(url, {
             method: 'POST',
             body: formData
@@ -38,7 +42,8 @@ const AddProduct = () => {
                    phone: data.phone,
                    location: data.location,
                    book_condition: data.book_condition,
-                   verify: dbUser.verify
+                   verify: dbUser.verify,
+                   date
 
                 }
                 //saved seller info database
@@ -55,6 +60,7 @@ const AddProduct = () => {
                     console.log(data);
                     if(data.acknowledged){
                       toast.success("Add product successfully");
+                      navigate('/dashboard/myproduct')
                     }
                 })
             }

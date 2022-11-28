@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 import { FaCheckCircle } from "react-icons/fa";
+import useUser from '../../../hooks/useUser/useUser';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const BookCart = ({ category , setBookProduct}) => {
-    const {img, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify} = category;
+    const {img, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify, date} = category;
+    
+    const {user} = useContext(AuthContext);
+    const [dbUser, isLoading] = useUser(user?.email);
+
+    if(isLoading){
+        return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
+    }
     return (
         <div className="max-w-lg p-4 drop-shadow-lg border-4 rounded-lg bg-white">
         <div className="flex justify-between pb-4 border-bottom">
-            <div className="flex items-center">
+           
+                <div className="flex items-center ">
                 <p className="mb-0 capitalize font-bold ">{sellerName}</p>
                 <span className='ml-2'>
                     {
                        verify? <FaCheckCircle className='text-blue-500'></FaCheckCircle>: <></>
                     }
                 </span>
-            </div>
+                </div>
+                <div>
+                    <p>{date? date: 'No post date'}</p>
+                </div>
           
         </div>
         <div className="space-y-4">
@@ -37,14 +50,18 @@ const BookCart = ({ category , setBookProduct}) => {
                 </p>
 
                 
-               <div className='flex justify-between my-5 '>
-                    <PrimaryButtom><label 
-                    htmlFor="booking-modal" 
-                    onClick={()=> setBookProduct(category)}
-                    >Book Now</label></PrimaryButtom>
-                    
-                    <button className='btn btn-link'>Report</button>
-                </div>
+               {
+                 dbUser.role === 'seller'?
+                 <></>
+                 : <div className='flex justify-between my-5 '>
+                 <PrimaryButtom><label 
+                 htmlFor="booking-modal" 
+                 onClick={()=> setBookProduct(category)}
+                 >Book Now</label></PrimaryButtom>
+                 
+                 <button className='btn btn-link'>Report</button>
+             </div>
+               }
             </div>
         </div>
     </div>
