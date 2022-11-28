@@ -39,11 +39,60 @@ async function run(){
         const bookingsCollection = client.db('bookBazar').collection('bookings');
         const allUsersCollection =  client.db('bookBazar').collection('allusersInfo');
 
+
+        app.get('/category', async(req, res)=>{
+          
+            const query = {}
+            const cursor = await bookCategoriesCollection.find(query).toArray();
+            res.send(cursor)
+        })
+        app.get('/category/product', verifyJWT, async(req, res)=>{
+            const email = req.query.email;
+            const decodedEmail = req.decoded.email;
+            if( email !== decodedEmail){
+                return res.status(403).send({message: 'forbidden access'})
+            }
+            const query = {sellerEmail: email}
+            const cursor = await bookCategoriesCollection.find(query).toArray();
+            res.send(cursor)
+        })
+        app.delete('/category/product/:id', verifyJWT, async(req, res)=>{
+             const id = req.params.id;
+             const filter = {_id : ObjectId(id)};
+             const result = await bookCategoriesCollection.deleteOne(filter);
+             res.send(result); 
+        })
+
+        app.put('/category/product/:id', verifyJWT, async(req, res)=>{
+            const decodedEmail = req.decoded.email;
+            const query = {sellerEmail: decodedEmail};
+            const user = await bookCategoriesCollection.findOne(query);
+            if( user?.sellerEmail !== decodedEmail){
+                return res.status(403).send({message: 'forbidden access'})
+            }
+    
+            const id = req.params.id;
+            const filter = {_id: ObjectId(id)};
+            const option = {upsert : true}
+            const updateDoc ={
+                $set :{
+                    addADS: true
+                }
+            }
+            const result = await bookCategoriesCollection.updateOne(filter, updateDoc, option );
+            res.send(result);
+        })
         app.get('/category/:id', async(req, res)=>{
-            const id = parseInt(req.params.id);
+            const id = req.params.id;
             const query = {category_id: id};
             const cursor = await bookCategoriesCollection.find(query).toArray();
             res.send(cursor)
+        })
+
+        app.post('/category',async(req,res)=>{
+            const seller = req.body;
+            const result = await bookCategoriesCollection.insertOne(seller);
+            res.send(result)
         })
 
         app.get('/bookings', verifyJWT, async(req, res)=>{
