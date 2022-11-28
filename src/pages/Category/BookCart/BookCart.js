@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -20,7 +19,7 @@ const BookCart = ({ category , setBookProduct}) => {
         </div>
         <div className="space-y-4">
             <div className="flex items-center justify-center">
-                <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />
+                <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-60 dark:bg-gray-500" />
             </div>
             <div className="space-y-2">
               

@@ -20,7 +20,7 @@ const MyOrder = () => {
     })
     return (
         <div>
-            <h1 className='text-3xl f-family-abril fw  my-8'>My Oders</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8'>My Orders</h1>
 
             <div className="overflow-x-auto w-full">
   <table className="table w-full">

@@ -11,7 +11,7 @@ const AddProduct = () => {
     const [dbUser, isLoading] = useUser(user?.email)
  
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const imgHostKey= process.env.REACT_APP_IMGBB_KEY;
+    const imgHostKey= process.env.REACT_APP_img_key;
     const handleAddProduct = data => {
         const image = data.image[0];
         const formData = new FormData();
@@ -55,7 +55,6 @@ const AddProduct = () => {
                     console.log(data);
                     if(data.acknowledged){
                       toast.success("Add product successfully");
-                      data.reset();
                     }
                 })
             }

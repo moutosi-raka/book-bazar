@@ -1,33 +1,36 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
 import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import MyProductCart from './MyProductCart';
 
 const MyProduct = () => {
+    const {user} = useContext(AuthContext)
+    const url = `http://localhost:5000/category/product?email=${user?.email}`;
+
+    const {data: myProducts = []} = useQuery({
+        queryKey: ['category', user?.email],
+        queryFn: async()=>{
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    })
+
     return (
         <div>
-            <h1 className='text-3xl f-family-abril fw  my-8'>My Product</h1>
-            <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Book Name</th>
-                            <th>Price</th>
-                            <th>Sale Status</th>
-                            <th>Add Advertise</th>
-                            <th>Delete product</th>    
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>200</td>
-                            <td><span className='text-green-700 font-bold'>Sold</span></td>
-                            <td><PrimaryButtom>Add Ads</PrimaryButtom></td>
-                            <td><button className='btn bg-red-700 text-white'>Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h1 className='text-3xl f-family-abril fw  my-8'>My Product {myProducts.length}</h1>
+            <div className='grid grid-cols-1 md:grid-cols-2  gap-4 my-12'>
+            {
+              myProducts.map(myProduct => <MyProductCart
+              key={myProduct._id}
+              myProduct={myProduct}
+              ></MyProductCart>)  
+            }
             </div>
         </div>
     );
