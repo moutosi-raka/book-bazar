@@ -1,12 +1,68 @@
-import React from 'react';
+import { Result } from 'postcss';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useUser from '../../../hooks/useUser/useUser';
 
 const AddProduct = () => {
+    const {user} = useContext(AuthContext);
+    // console.log(user)
+    const [dbUser, isLoading] = useUser(user?.email)
+ 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    const imgHostKey= process.env.REACT_APP_IMGBB_KEY;
     const handleAddProduct = data => {
-        console.log(data);
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image',image);
+        const url =`https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imgData => {
+            if(imgData.success){
+                console.log(imgData.data.url)
+                const seller = {
+                   sellerName: user.displayName,
+                   sellerEmail: user.email,
+                   book_name: data.book_name,
+                   category_id: data.category_id,
+                   original_price: data.original_price,
+                   resale_price: data.resale_price,
+                   Year_of_use: data.Year_of_use,
+                   img: imgData.data.url,
+                   description: data.description,
+                   phone: data.phone,
+                   location: data.location,
+                   book_condition: data.book_condition,
+                   verify: dbUser.verify
 
+                }
+                //saved seller info database
+                fetch('http://localhost:5000/category',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(seller)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    console.log(data);
+                    if(data.acknowledged){
+                      toast.success("Add product successfully");
+                      data.reset();
+                    }
+                })
+            }
+        })
+    }
+    if(isLoading){
+        return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div>
     }
 
     return (
@@ -95,9 +151,9 @@ const AddProduct = () => {
                         </label>
                         <input type="text"
                             {...register("location",
-                                { required: "year of use is required" })}
+                                { required: "location is required" })}
                             className="input input-bordered" />
-                        {errors.name && <p className='text-red-700' role="alert">{errors.name?.message}</p>}
+                        {errors.location && <p className='text-red-700' role="alert">{errors.location?.message}</p>}
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -111,11 +167,11 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Img upload</span>
                         </label>
-                        <input type="text"
-                            {...register("img",
-                                { required: "year of use is required" })}
+                        <input type="file"
+                            {...register("image",
+                                { required: "img is required" })}
                             className="input input-bordered" />
-                        {errors.name && <p className='text-red-700' role="alert">{errors.name?.message}</p>}
+                        {errors.file && <p className='text-red-700' role="alert">{errors.file?.message}</p>}
                     </div>
                 </div>
 

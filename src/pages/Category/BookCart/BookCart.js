@@ -1,14 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
+import { FaCheckCircle } from "react-icons/fa";
 
 const BookCart = ({ category , setBookProduct}) => {
-    const {img, book_name, resale_price, original_price, location, Year_of_use } = category;
+    const {img, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify} = category;
     return (
         <div className="max-w-lg p-4 drop-shadow-lg border-4 rounded-lg bg-white">
         <div className="flex justify-between pb-4 border-bottom">
             <div className="flex items-center">
-                <p className="mb-0 capitalize ">Seller name</p>
+                <p className="mb-0 capitalize font-bold ">{sellerName}</p>
+                <span className='ml-2'>
+                    {
+                       verify? <FaCheckCircle className='text-blue-500'></FaCheckCircle>: <></>
+                    }
+                </span>
             </div>
           
         </div>
@@ -22,9 +28,16 @@ const BookCart = ({ category , setBookProduct}) => {
                 <p className='text-black'>Original Price: {original_price}</p>
                 <p className='text-black'>Sell Price: {resale_price}</p>
                 <p className='text-black'>Location: {location}</p>
+                <p className='text-black'>Contact No: {phone}</p>
+                <p className='text-black'>Book Condition: {book_condition}</p>
                 <p className="leading-snug dark:text-gray-400">{Year_of_use} used</p>
+                <p className="leading-snug dark:text-gray-400">{ description?
+                <>Description: {description}</> 
+                : <>No description</>
+                }
+                </p>
 
-               
+                
                <div className='flex justify-between my-5 '>
                     <PrimaryButtom><label 
                     htmlFor="booking-modal" 
