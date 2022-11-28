@@ -131,6 +131,13 @@ async function run(){
             res.send(user);
         })
 
+        app.delete('/all-user-info/role/:id',  async(req, res)=>{
+            const id = req.params.id;
+            console.log('user id',id)
+            const filter = {_id : ObjectId(id)};
+            const result = await allUsersCollection.deleteOne(filter);
+            res.send(result); 
+        })
 
         app.get('/all-user-info/role', async(req,res)=>{
             const role = req.query.role;
