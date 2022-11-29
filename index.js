@@ -38,6 +38,7 @@ async function run(){
         const bookCategoriesCollection = client.db('bookBazar').collection('allCategories');
         const bookingsCollection = client.db('bookBazar').collection('bookings');
         const allUsersCollection =  client.db('bookBazar').collection('allusersInfo');
+        const reportsCollection =  client.db('bookBazar').collection('reports');
 
 
         app.get('/category', async(req, res)=>{
@@ -82,9 +83,29 @@ async function run(){
             const result = await bookCategoriesCollection.updateOne(filter, updateDoc, option );
             res.send(result);
         })
+        app.put('/category/report/:id', async(req, res)=>{
+          
+            const id = req.params.id;
+            const filter = {_id: ObjectId(id)};
+            const option = {upsert : true}
+            const updateDoc ={
+                $set :{
+                    report: "true"
+                }
+            }
+            const result = await bookCategoriesCollection.updateOne(filter, updateDoc, option );
+            res.send(result);
+        })
         app.get('/category/:id', async(req, res)=>{
             const id = req.params.id;
             const query = {category_id: id};
+            const cursor = await bookCategoriesCollection.find(query).toArray();
+            res.send(cursor)
+        })
+        app.get('/categorys', async(req, res)=>{
+            const report = req.query.report;
+            console.log(report)
+            const query = {report: report};
             const cursor = await bookCategoriesCollection.find(query).toArray();
             res.send(cursor)
         })
@@ -110,6 +131,16 @@ async function run(){
             const booking = req.body;
             const result = await bookingsCollection.insertOne(booking);
             res.send(result);
+        })
+        app.post('/reports', async(req, res)=>{
+            const report = req.body;
+            const result = await reportsCollection.insertOne(report);
+            res.send(result);
+        })
+        app.get('/reports', async(req, res)=>{
+            const query = {}
+            const cursor = await reportsCollection.find(query).toArray();
+            res.send(cursor)
         })
 
         app.post('/all-user-info', async(req,res)=>{
