@@ -3,6 +3,7 @@ import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 import { FaCheckCircle } from "react-icons/fa";
 import useUser from '../../../hooks/useUser/useUser';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const BookCart = ({ category , setBookProduct}) => {
     const {img, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify, date} = category;
@@ -10,6 +11,21 @@ const BookCart = ({ category , setBookProduct}) => {
     const {user} = useContext(AuthContext);
     const [dbUser, isLoading] = useUser(user?.email);
 
+
+    const handleReport = id =>{
+        fetch(`http://localhost:5000/category/report/${id}`,{
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.modifiedCount>0){
+                toast.success('report successfully');
+            }
+        })
+    }
     if(isLoading){
         return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
     }
@@ -59,7 +75,11 @@ const BookCart = ({ category , setBookProduct}) => {
                  onClick={()=> setBookProduct(category)}
                  >Book Now</label></PrimaryButtom>
                  
-                 <button className='btn btn-link'>Report</button>
+                 <label 
+                 className='btn btn-link'
+                 
+                 onClick={()=> handleReport(category._id)}
+                 >Report Now</label>
              </div>
                }
             </div>

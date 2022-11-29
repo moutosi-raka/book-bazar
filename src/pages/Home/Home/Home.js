@@ -3,6 +3,7 @@ import Advertise from '../Advertise/Advertise';
 import Banner from '../Banner/Banner';
 import CategoriesSection from '../CategoriesSection/CategoriesSection';
 import { useQuery } from '@tanstack/react-query';
+import ClientReview from '../ClientReview/ClientReview';
 
 const Home = () => {
     
@@ -25,6 +26,7 @@ const Home = () => {
             {
               adsItems.length>0 &&  <Advertise adsItems={adsItems}></Advertise> 
             }
+            <ClientReview></ClientReview>
            
         </div>
     );

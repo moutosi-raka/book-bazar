@@ -9,8 +9,10 @@ import AllUser from "../../pages/Dashboard/AllUser/AllUser";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import MyOrder from "../../pages/Dashboard/MyOder/MyOrder";
 import MyProduct from "../../pages/Dashboard/MyProduct/MyProduct";
+import ShowReport from "../../pages/Dashboard/ShowReport/ShowReport";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
+import NotFound from "../../pages/NotFound/NotFound";
 import SignUp from "../../pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
@@ -28,7 +30,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRouter><Category></Category></PrivateRouter>,
-                loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+                loader: async({params})=> fetch(`http://localhost:5000/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -69,9 +71,17 @@ export const router = createBrowserRouter([
                 element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
+                path: "/dashboard/show-report",
+                element: <AdminRoute><ShowReport></ShowReport></AdminRoute>
+            },
+            {
                 path: "/dashboard/alluser",
                 element: <AdminRoute><AllUser></AllUser></AdminRoute>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <NotFound></NotFound>
     }
 ])

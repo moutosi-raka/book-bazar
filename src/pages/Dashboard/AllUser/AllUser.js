@@ -1,10 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import ConfirmationModal from '../../Shared/ConfirmationModel/ConfirmationModal';
 
 
 const AllUser = () => {
     const role = 'buyer';
-    const {data: buyerUser = []} = useQuery({
+    const [deleteBuyer, setDeleteBuyer] = useState(null);
+    const closeModal = ()=>{
+        setDeleteBuyer(null);
+    }
+    const {data: buyerUser = [], refetch} = useQuery({
         queryKey: ['all-user-info', role],
         queryFn: async()=>{
             const res = await fetch(`http://localhost:5000/all-user-info/role?role=${role}`);
@@ -12,6 +18,25 @@ const AllUser = () => {
             return data;
         }
     })
+
+    const handleDeleteBuyer =(buyer) =>{
+        fetch(`http://localhost:5000/all-user-info/role/${buyer._id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.deletedCount>0){
+                console.log(data);
+                refetch();
+                toast('Delete successfully')
+            }
+        
+        })
+    }
     return (
         <div>
             <h1 className='text-3xl f-family-abril fw  my-8'>All Buyer List</h1>
@@ -31,13 +56,23 @@ const AllUser = () => {
                                 <th>{i+1}</th>
                                 <td>{buyer.userName}</td>
                                 <td>{buyer.userEmail}</td>
-                                <td><button className='btn btn-sm bg-red-700 text-white'>Delete</button></td>
+                                <td> <label onClick={() => setDeleteBuyer(buyer)} htmlFor="confirmation-modal" className="btn bg-red-700 text-white btn-xs ">Delete</label></td>
                             </tr>)
                         }
                        
                     </tbody>
                 </table>
             </div>
+            {
+                deleteBuyer && <ConfirmationModal
+                title={`Are you sure to detele Buyer`}
+                message={`if you delete ${deleteBuyer.book_name} It cannot be undone.`}
+                closeModal={closeModal}
+                successButtonName = "Delete"
+                successAction={handleDeleteBuyer}
+                modalData = {deleteBuyer}
+                ></ConfirmationModal>
+            }
         </div>
     );
 };

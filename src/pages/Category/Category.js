@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookCart from './BookCart/BookCart';
 import BookingModel from './BookingModel/BookingModel';
 
+
 const Category = () => {
     const categories = useLoaderData();
     const [bookProduct, setBookProduct] = useState(null);
+
+   
     return (
         <div>
             <h1 className='text-3xl'>Category</h1>
@@ -19,6 +22,7 @@ const Category = () => {
               key={category._id}
               category={category}
               setBookProduct={setBookProduct}
+              
               ></BookCart>)  
             }
             </div> 
@@ -28,7 +32,9 @@ const Category = () => {
         bookProduct={bookProduct}
         setBookProduct={setBookProduct}
         ></BookingModel>}
+       
         </div>
+        
     );
 };
 

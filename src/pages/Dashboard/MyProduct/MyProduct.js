@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import ConfirmationModal from '../../Shared/ConfirmationModel/ConfirmationModal';
@@ -44,12 +45,31 @@ const MyProduct = () => {
     }
 
     const handleDeleteProduct =(product) =>{
-        console.log(doctor)
+        fetch(`http://localhost:5000/category/product/${product._id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.deletedCount>0){
+                console.log(data);
+                refetch();
+                toast('Delete successfully')
+            }
+        
+        })
     }
 
     return (
         <div>
+            <div className='flex justify-between items-center '>
             <h1 className='text-3xl f-family-abril fw  my-8'>My Product {myProducts.length}</h1>
+            <Link className='btn btn-primary text-white' to='/dashboard/addproduct'>Add Product</Link>
+            </div>
+            
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
 
@@ -97,6 +117,7 @@ const MyProduct = () => {
                 title={`Are you sure to detele product`}
                 message={`if you delete ${deleteProduct.book_name} It cannot be undone.`}
                 closeModal={closeModal}
+                successButtonName = "Delete"
                 successAction={handleDeleteProduct}
                 modalData = {deleteProduct}
                 ></ConfirmationModal>
