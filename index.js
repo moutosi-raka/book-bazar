@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const port= process.env.PORT || 5000;
 
 const app = express();
@@ -9,7 +11,6 @@ const app = express();
 //middleware
 app.use(cors());
 app.use(express.json());
-require('dotenv').config();
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.dtu3pyw.mongodb.net/?retryWrites=true&w=majority`;
@@ -39,6 +40,7 @@ async function run(){
         const bookingsCollection = client.db('bookBazar').collection('bookings');
         const allUsersCollection =  client.db('bookBazar').collection('allusersInfo');
         const reportsCollection =  client.db('bookBazar').collection('reports');
+        const paymentsCollection =  client.db('bookBazar').collection('payments');
 
 
         app.get('/category', async(req, res)=>{
@@ -98,7 +100,9 @@ async function run(){
         })
         app.get('/category/:id', async(req, res)=>{
             const id = req.params.id;
-            const query = {category_id: id};
+            const query = {category_id: id,
+                paid: false
+            };
             const cursor = await bookCategoriesCollection.find(query).toArray();
             res.send(cursor)
         })
@@ -114,6 +118,30 @@ async function run(){
             const seller = req.body;
             const result = await bookCategoriesCollection.insertOne(seller);
             res.send(result)
+        })
+
+        app.post('/payments', async(req, res)=>{
+            const payment = req.body;
+            const result = await paymentsCollection.insertOne(payment);
+            const id = payment.bookingid;
+            const filter = {_id : ObjectId(id)}
+            const updateDoc ={
+                $set:{
+                    paid: true,
+                    transcationId: payment.transactionId
+                }
+            }
+            const updateResult = await bookingsCollection.updateOne(filter, updateDoc);
+            const categoryId = payment.category_id;
+            const categoryFilter = {_id : ObjectId(categoryId)};
+            const categoryUpdateDoc ={
+                $set:{
+                    paid: true,
+                    transcationId: payment.transactionId
+                }
+            }
+            const categoryUpdateResult = await bookCategoriesCollection.updateOne(categoryFilter, categoryUpdateDoc);
+            res.send(result);
         })
 
         app.get('/bookings', verifyJWT, async(req, res)=>{
@@ -132,6 +160,14 @@ async function run(){
             const result = await bookingsCollection.insertOne(booking);
             res.send(result);
         })
+
+        app.get('/booking/:id', async(req, res)=>{
+         const id = req.params.id;
+         const query = {_id: ObjectId(id)};
+         const result = await bookingsCollection.findOne(query);
+         res.send(result);
+        })
+
         app.post('/reports', async(req, res)=>{
             const report = req.body;
             const result = await reportsCollection.insertOne(report);
@@ -164,7 +200,6 @@ async function run(){
 
         app.delete('/all-user-info/role/:id',  async(req, res)=>{
             const id = req.params.id;
-            console.log('user id',id)
             const filter = {_id : ObjectId(id)};
             const result = await allUsersCollection.deleteOne(filter);
             res.send(result); 
@@ -193,6 +228,23 @@ async function run(){
             }
             const result = await allUsersCollection.updateOne(filter, updateDoc, option );
             res.send(result);
+        })
+
+
+        app.post('/create-payment-intent', async(req, res)=>{
+            const booking = req.body;
+            const price = booking.price;
+            const amount = price*100;
+            const paymentIntent = await stripe.paymentIntents.create({
+                currency: 'usd',
+                amount: amount,
+                "payment_method_types": [
+                    "card"
+                  ]
+            });
+            res.send({
+                clientSecret: paymentIntent.client_secret,
+              });
         })
 
         app.get('/jwt', async(req,res)=>{
