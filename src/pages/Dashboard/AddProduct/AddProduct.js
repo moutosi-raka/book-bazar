@@ -43,6 +43,7 @@ const AddProduct = () => {
                    location: data.location,
                    book_condition: data.book_condition,
                    verify: dbUser.verify,
+                   paid: false,
                    date
 
                 }

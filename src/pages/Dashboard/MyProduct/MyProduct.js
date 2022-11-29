@@ -99,7 +99,7 @@ const MyProduct = () => {
                                 </td>
                                 <td>{myProduct.book_name}</td>
                                 <td>{myProduct.resale_price}</td>
-                                <td>sold</td>
+                                <td>{myProduct.paid? <span className='font-bold text-primary'>sold</span> : 'available'}</td>
                                 <th>
                                     {!myProduct.addADS && <button onClick={() => handleAds(myProduct._id)} className="btn btn-primary text-white btn-xs ">Add ADS</button>}
                                 </th>

@@ -9,7 +9,7 @@ const Home = () => {
     
     const url = 'http://localhost:5000/category';
     const {data: adsProducts = []} = useQuery({
-        queryKey: ['category'],
+        queryKey: [],
         queryFn: async()=>{
             const res = await fetch(url);
             const data = await res.json();

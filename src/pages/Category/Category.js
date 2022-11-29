@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 import BookCart from './BookCart/BookCart';
 import BookingModel from './BookingModel/BookingModel';
 
@@ -7,7 +8,12 @@ import BookingModel from './BookingModel/BookingModel';
 const Category = () => {
     const categories = useLoaderData();
     const [bookProduct, setBookProduct] = useState(null);
+    const navigation = useNavigation();
+    
 
+    if(navigation.state === 'loading'){
+        return <Loading></Loading>
+    }
    
     return (
         <div>

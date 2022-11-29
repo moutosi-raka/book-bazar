@@ -7,12 +7,14 @@ import AddProduct from "../../pages/Dashboard/AddProduct/AddProduct";
 import AllSeller from "../../pages/Dashboard/AllSeller/AllSeller";
 import AllUser from "../../pages/Dashboard/AllUser/AllUser";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
+import Payment from "../../pages/Dashboard/Dashboard/Payment/Payment";
 import MyOrder from "../../pages/Dashboard/MyOder/MyOrder";
 import MyProduct from "../../pages/Dashboard/MyProduct/MyProduct";
 import ShowReport from "../../pages/Dashboard/ShowReport/ShowReport";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import NotFound from "../../pages/NotFound/NotFound";
+import DisplayError from "../../pages/Shared/DisplayError/DisplayError";
 import SignUp from "../../pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
@@ -22,6 +24,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children:[
             {
                 path: '/',
@@ -49,6 +52,7 @@ export const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
+        errorElement: <DisplayError></DisplayError>,
         children:[
             {
                 path: "/dashboard",
@@ -73,6 +77,11 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/show-report",
                 element: <AdminRoute><ShowReport></ShowReport></AdminRoute>
+            },
+            {
+                path: "/dashboard/payment/:id",
+                element: <Payment></Payment>,
+                loader: async({params})=> fetch(`http://localhost:5000/booking/${params.id}`)
             },
             {
                 path: "/dashboard/alluser",

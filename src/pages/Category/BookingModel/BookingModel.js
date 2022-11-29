@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 
 const BookingModel = ({bookProduct, setBookProduct}) => {
-    const {book_name,img, category_name, resale_price} = bookProduct;
+    const {book_name,img, _id, category_name, resale_price} = bookProduct;
     const {user} = useContext(AuthContext);
     const date = format(new Date(), 'PPpp') ;
     
@@ -19,6 +19,7 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
         const booking = {
             bookDate: date,
             category_name,
+            category_id: _id, 
             buyerName,
             buyerEmail,
             user_uid: user.uid,
