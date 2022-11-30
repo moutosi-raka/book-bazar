@@ -4,7 +4,7 @@
 ***
 Book Bazar is a resale product website. User can sell they unused book .....
 
-# Project Live Side Link : ()
+# Project Live Side Link : (https://book-bazar-76341.web.app/)
 ## Admin Email & password 
 email : moutosi@raka.com
 pass: 123456
