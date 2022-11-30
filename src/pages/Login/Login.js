@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useToken from '../../hooks/useToken/useToken';
+import GoogleSignUp from '../Shared/GoogleSignUp/GoogleSignUp';
 
 const Login = () => {
     const { register,formState: { errors }, handleSubmit } = useForm(); 
@@ -15,10 +16,13 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-
-    if(token){
-        navigate(from, {replace: true})
-    }
+    
+        useEffect(() => {
+            if(token){    
+            navigate(from, {replace: true})
+        }
+        }, [token,from, navigate]);
+        
     const handleLogin = data =>
     {
         setLoginError('');
@@ -26,7 +30,7 @@ const Login = () => {
         .then(res=> {
             const user = res.user;
             setLoginUserEmail(user.email)
-            // data.reset();
+           
            
         })
         .catch(error => {
@@ -34,6 +38,7 @@ const Login = () => {
             setLoginError(error.message)
         })
     }
+    
     return (
         <div className='h-[700px] flex justify-center items-center'>
             <div className='p-8 shadow-2xl rounded-lg w-1/2'>
@@ -70,7 +75,7 @@ const Login = () => {
                 
                 <div className="divider">OR</div>
 
-                     <button className='btn btn-outline w-full'>Continue With Google</button>
+                    <GoogleSignUp></GoogleSignUp>
             </div>
         </div>
     );

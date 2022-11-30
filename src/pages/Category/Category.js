@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Loading from '../Loading/Loading';
@@ -6,18 +7,23 @@ import BookingModel from './BookingModel/BookingModel';
 
 
 const Category = () => {
+   
     const categories = useLoaderData();
     const [bookProduct, setBookProduct] = useState(null);
     const navigation = useNavigation();
-    
+
+ 
+ 
 
     if(navigation.state === 'loading'){
         return <Loading></Loading>
     }
+
+    
    
     return (
         <div>
-            <h1 className='text-3xl'>Category</h1>
+          <h1 className='text-3xl'>Category</h1>
             {
               categories.length === 0?
               <h1 className='text-center h-[400px] mt-12 text-2xl'>NO Product</h1>  

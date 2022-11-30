@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import useToken from '../../hooks/useToken/useToken';
+import GoogleSignUp from '../Shared/GoogleSignUp/GoogleSignUp';
+
 
 const SignUp = () => {
     const { register,formState: { errors }, handleSubmit } = useForm();
@@ -12,6 +14,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const [createUserEmail, setCreateUserEmail] = useState('')
     const [token] = useToken(createUserEmail);
+   
 
     if(token){
         navigate('/');
@@ -63,6 +66,7 @@ const SignUp = () => {
             
         })
     } 
+
 
   
     return (
@@ -129,7 +133,7 @@ const SignUp = () => {
                 <p className='text-center'>Already have a account? <Link className='text-secondary' to="/login">Login</Link></p>
                 <div className="divider">OR</div>
 
-                     <button className='btn btn-outline w-full'>Continue With Google</button>
+                     <GoogleSignUp></GoogleSignUp>
             </div>
         </div>
     );
