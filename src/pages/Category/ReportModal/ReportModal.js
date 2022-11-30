@@ -24,7 +24,7 @@ const ReportModal = ({reportProduct, setReportProduct}) => {
             price: resale_price,
             report
         }
-        fetch('http://localhost:5000/reports',{
+        fetch('https://book-bazar-server-moutosi-raka.vercel.app/reports',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

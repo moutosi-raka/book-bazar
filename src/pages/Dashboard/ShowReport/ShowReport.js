@@ -15,13 +15,13 @@ const ShowReport = () => {
     const { data: Complaints = [], refetch } = useQuery({
         queryKey: ['category', report],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categorys?report=${report}`);
+            const res = await fetch(`https://book-bazar-server-moutosi-raka.vercel.app/categorys?report=${report}`);
             const data = await res.json();
             return data;
         }
     })
     const handleDeleteProduct =(report) =>{
-        fetch(`http://localhost:5000/category/product/${report._id}`,
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/product/${report._id}`,
         {
             method: 'DELETE',
             headers: {

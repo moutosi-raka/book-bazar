@@ -27,16 +27,19 @@ pass: 123456
 # Feature 
 
 * Firebase authentication system 
-* Private router
 * Admin route
+* payment system 
 * admin can delete user and seller
 * seller route
+* user report any product and admin delete this product
+* Private router, seller route, admin route
 * Responsive Website
 * Add product
 * toggle navbar
 * API
 * use express js for backend API loading
 * Not Found Page
+* Error page
 
 
 

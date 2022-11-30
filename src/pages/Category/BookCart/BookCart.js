@@ -13,7 +13,7 @@ const BookCart = ({ category , setBookProduct}) => {
 
 
     const handleReport = id =>{
-        fetch(`http://localhost:5000/category/report/${id}`,{
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/report/${id}`,{
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -29,7 +29,7 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
             phone,
             meetingLocation
         }
-        fetch('http://localhost:5000/bookings',{
+        fetch('https://book-bazar-server-moutosi-raka.vercel.app/bookings',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

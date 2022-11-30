@@ -7,7 +7,7 @@ import ClientReview from '../ClientReview/ClientReview';
 
 const Home = () => {
     
-    const url = 'http://localhost:5000/category';
+    const url = 'https://book-bazar-server-moutosi-raka.vercel.app/category';
     const {data: adsProducts = []} = useQuery({
         queryKey: [],
         queryFn: async()=>{

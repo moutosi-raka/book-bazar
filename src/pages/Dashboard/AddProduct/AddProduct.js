@@ -48,7 +48,7 @@ const AddProduct = () => {
 
                 }
                 //saved seller info database
-                fetch('http://localhost:5000/category',{
+                fetch('https://book-bazar-server-moutosi-raka.vercel.app/category',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

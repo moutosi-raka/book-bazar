@@ -5,7 +5,7 @@ const useUser = email =>{
     const [isUserLoading, setIsUserLoading] = useState(true);
     useEffect( ()=>{
         if(email){
-            fetch(`http://localhost:5000/user-info/${email}`)
+            fetch(`https://book-bazar-server-moutosi-raka.vercel.app/user-info/${email}`)
         .then(res => res.json())
         .then(data => {
             setUser(data);
