@@ -20,7 +20,7 @@ const Home = () => {
    
 
     return (
-        <div className='my-5'>
+        <div className='mb-5'>
             <Banner></Banner>
             <CategoriesSection></CategoriesSection>
             {

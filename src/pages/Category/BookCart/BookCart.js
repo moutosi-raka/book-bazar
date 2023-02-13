@@ -30,7 +30,7 @@ const BookCart = ({ category , setBookProduct}) => {
         return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
     }
     return (
-        <div className="max-w-lg p-4 drop-shadow-lg border-4 rounded-lg bg-white">
+        <div className="max-w-lg p-4 shadow-purple-400  shadow-lg border-2 border-purple-400 rounded-lg bg-white">
         <div className="flex justify-between pb-4 border-bottom">
            
                 <div className="flex items-center ">
@@ -50,7 +50,7 @@ const BookCart = ({ category , setBookProduct}) => {
             <div className="flex items-center justify-center">
                 <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-60 dark:bg-gray-500" />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 text-sm">
               
                 <h3 className="text-xl font-semibold ">Book Name: {book_name}</h3>
                 <p className='text-black'>Original Price: {original_price}</p>

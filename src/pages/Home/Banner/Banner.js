@@ -6,7 +6,7 @@ import './Banner.css'
 const Banner = () => {
     return (
         <div>
-            <div className="hero banner p-12"
+            <div className="hero banner "
              >
                 <div className="hero-content flex-col lg:flex-row-reverse ">
                     <img src={book} alt='' className="hidden lg:block max-w-sm rounded-lg shadow-2xl" />

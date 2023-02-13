@@ -15,15 +15,16 @@ const DashboardLayout = () => {
     
     return (
         <div>
-            <Navbar></Navbar>
+            
             <div className="drawer drawer-mobile  ">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
-                    <Outlet></Outlet>
+                    <Navbar></Navbar>
+                    <div className='px-8 mb-12'><Outlet></Outlet></div>
                 </div>
                 <div className="drawer-side ">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content">
+                    <ul className="menu p-4 w-52  bg-primary text-white pt-20">
                     { dbUser?.role === "buyer" && <li><Link to='/dashboard/myorder'>My Orders</Link></li>}
                     { dbUser?.role === "seller" && <>
                      <li><Link to='/dashboard/myproduct'>My Product</Link></li>

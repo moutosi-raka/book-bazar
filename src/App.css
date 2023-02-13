@@ -3,3 +3,9 @@
 .f-family-abril{
     font-family: 'Abril Fatface', cursive;
 }
+
+.text-linear{
+    background: -webkit-linear-gradient(#77346e, #230125);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

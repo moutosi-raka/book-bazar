@@ -2,16 +2,16 @@
     {
         "category_id": 1,
         "category_name": "Nobel",
-        "category_img": "https://i.ibb.co/4Sj99Dp/nobel.jpg"
+        "category_img": "https://i.ibb.co/0MLCyzt/pic1-1.jpg"
     },
     {
         "category_id": 2,
         "category_name": "Poetry",
-        "category_img": "https://i.ibb.co/WPRk2YJ/poetry.jpg"
+        "category_img": "https://i.ibb.co/dbn7Hsh/pic1-3.jpg"
     },
     {
         "category_id": 3,
         "category_name": "Biograpy",
-        "category_img": "https://i.ibb.co/njgrMcy/biography.jpg"
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
     }
 ]

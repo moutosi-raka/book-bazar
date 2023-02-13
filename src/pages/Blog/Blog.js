@@ -25,11 +25,11 @@ const blogs = [
 
 const Blog = () => {
     return (
-        <div>
+        <div className='my-12 w-11/12 mx-auto'>
             <h1 className='text-3xl font-bold my-5'>My Blog</h1>
-        <div>
+        <div >
          {
-            blogs.map((blog,i) => <div key={blog.id} className='border p-9 my-5 text-bold bg-slate-100'>
+            blogs.map((blog,i) => <div key={blog.id} className='border p-9 my-5 text-bold bg-white'>
             <h1 className='text-xl'>{1+i}. {blog.question}</h1>
             <p className='mt-5'>{blog.ans}</p>
             </div>)
