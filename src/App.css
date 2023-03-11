@@ -5,7 +5,7 @@
 }
 
 .text-linear{
-    background: -webkit-linear-gradient(#77346e, #230125);
+    background: -webkit-linear-gradient(#c75dbb, #f0eff0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

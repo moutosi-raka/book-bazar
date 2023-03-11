@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaArrowCircleRight } from "react-icons/fa";
 import CategoryCart from './CategoryCart/CategoryCart';
 
 
@@ -11,7 +13,7 @@ const CategoriesSection = () => {
     },[])
     return (
         <div className='my-12 w-11/12 mx-auto'>
-           <h1 className='my-8 text-4xl font-bold text-center text-linear'>Book Categories</h1>
+           <h1 className='my-8 text-3xl font-bold text-center text-linear'>Book Categories</h1>
            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-12'>
            {
              categories.map(category => <CategoryCart
@@ -20,6 +22,10 @@ const CategoriesSection = () => {
              ></CategoryCart>)
            }
            </div>
+           <div className='text-center'>
+           <Link><span className='text-linear text-xl'>See More <FaArrowCircleRight className='inline text-purple-400 text-xl'/></span></Link>
+           </div>
+           
         </div>
     );
 };

@@ -73,12 +73,12 @@ const AddProduct = () => {
 
     return (
         <div className='p-5'>
-            <h1 className='text-3xl f-family-abril fw  my-8'>Add Product</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8 text-linear'>Add Product</h1>
             <form onSubmit={handleSubmit(handleAddProduct)}>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 '>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Book Name</span>
+                        <label className="label ">
+                            <span className="label-text text-white">Book Name</span>
                         </label>
                         <input type="text"
                             {...register("book_name",
@@ -89,7 +89,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Select Category</span>
+                            <span className="label-text text-white">Select Category</span>
                         </label>
                         <select className="select select-bordered w-full"
                         {...register("category_id", { required: true })}
@@ -97,12 +97,18 @@ const AddProduct = () => {
                         <option value='1' selected>Nobel</option>
                         <option value='2'>Poetry</option>
                         <option value='3'>Biograpy</option>
+                        <option value='4'>Crime</option>
+                        <option value='5'>Adventure stories</option>
+                        <option value='6'>Academic</option>
+                        <option value='7'>Science fiction</option>
+                        <option value='8'>Literature</option>
+                        <option value='9'>Others</option>
                     </select>
                       
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Book Condition</span>
+                            <span className="label-text text-white">Book Condition</span>
                         </label>
                         <select className="select select-bordered w-full"
                         {...register("book_condition", { required: true })}
@@ -115,7 +121,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Orinal price</span>
+                            <span className="label-text text-white">Orinal price</span>
                         </label>
                         <input type="text"
                             {...register("original_price",
@@ -125,7 +131,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Resale Price</span>
+                            <span className="label-text text-white">Resale Price</span>
                         </label>
                         <input type="text"
                             {...register("resale_price",
@@ -135,7 +141,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Description</span>
+                            <span className="label-text text-white">Description</span>
                         </label>
                         <input type="text"
                             {...register("description")}
@@ -143,7 +149,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Year of use</span>
+                            <span className="label-text text-white">Year of use</span>
                         </label>
                         <input type="text"
                             {...register("Year_of_use",
@@ -153,7 +159,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Location</span>
+                            <span className="label-text text-white">Location</span>
                         </label>
                         <input type="text"
                             {...register("location",
@@ -163,7 +169,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Mobile No</span>
+                            <span className="label-text text-white">Mobile No</span>
                         </label>
                         <input type="text"
                             {...register("phone")}
@@ -171,7 +177,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Img upload</span>
+                            <span className="label-text text-white">Img upload</span>
                         </label>
                         <input type="file"
                             {...register("image",

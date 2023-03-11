@@ -2,8 +2,8 @@
 .banner{
     background-image: linear-gradient(
         to left,
-        rgba(93, 92, 92, 0.5),
-        rgba(0, 0, 0, 0.5)
+        rgba(13, 13, 13, 0.7),
+        rgba(4, 1, 31, 0.9)
       ), url('../../../assets/banner/banner3.jpg');
     background-repeat: no-repeat;
     background-size: cover;

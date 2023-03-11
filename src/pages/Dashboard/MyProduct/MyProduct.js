@@ -66,7 +66,8 @@ const MyProduct = () => {
     return (
         <div>
             <div className='flex justify-between items-center '>
-            <h1 className='text-3xl f-family-abril fw  my-8'>My Product {myProducts.length}</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8 text-linear'>My Product</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8 text-linear'>Total Product {myProducts.length}</h1>
             <Link className='btn btn-primary text-white' to='/dashboard/addproduct'>Add Product</Link>
             </div>
             

@@ -40,7 +40,7 @@ const ShowReport = () => {
     }
     return (
         <div>
-            <h1 className='text-3xl f-family-abril fw  my-8'>Report</h1>
+            <h1 className='text-3xl f-family-abril fw  my-8 text-linear'>Report</h1>
 
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">

@@ -12,7 +12,24 @@ const Category = () => {
     const [bookProduct, setBookProduct] = useState(null);
     const navigation = useNavigation();
 
- 
+   let categoryName;
+    console.log(categories[0].category_id)
+   if(categories[0].category_id === "1" && categories.length>0)
+   {
+    categoryName= 'Nobel BooKs'
+   }
+  else if(categories[0].category_id === "2" && categories.length>0)
+   {
+    categoryName= 'Poetry Books'
+   }
+  else if(categories[0].category_id === "3"&& categories.length>0)
+   {
+    categoryName= 'Biograpy BooKs'
+   }
+   else
+   {
+     categoryName='Category'
+   }
  
 
     if(navigation.state === 'loading'){
@@ -23,7 +40,7 @@ const Category = () => {
    
     return (
         <div className='w-11/12 mx-auto'>
-          <h1 className='text-4xl text-center mt-6 font-bold text-linear'>Category</h1>
+          <h1 className='text-4xl text-center mt-6 font-bold text-linear'>{categoryName}</h1>
             {
               categories.length === 0?
               <h1 className='text-center h-[400px] mt-12 text-2xl'>NO Product</h1>  
@@ -39,6 +56,7 @@ const Category = () => {
             }
             </div> 
             } 
+
         { bookProduct 
         && <BookingModel 
         bookProduct={bookProduct}
