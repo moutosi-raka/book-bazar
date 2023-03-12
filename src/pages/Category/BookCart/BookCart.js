@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
-import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 import { FaCheckCircle } from "react-icons/fa";
+import { FaAddressBook } from "react-icons/fa";
+import { TbCurrencyTaka } from "react-icons/tb";
+import { FaArrowCircleRight } from "react-icons/fa";
+import { WiTime3 } from "react-icons/wi";
 import useUser from '../../../hooks/useUser/useUser';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const BookCart = ({ category , setBookProduct}) => {
     const {img, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify, date} = category;
@@ -41,42 +45,41 @@ const BookCart = ({ category , setBookProduct}) => {
                     }
                 </span>
                 </div>
-                <div>
-                    <p>{date? date: 'No post date'}</p>
-                </div>
+            
           
         </div>
         <div className="space-y-4">
             <div className="flex items-center justify-center">
-                <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-60 dark:bg-gray-500" />
+                <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-40 dark:bg-gray-500" />
             </div>
             <div className="space-y-2 text-sm">
               
-                <h3 className="text-xl font-semibold ">Book Name: {book_name}</h3>
-                <p className='text-black'>Original Price: {original_price}</p>
-                <p className='text-black'>Sell Price: {resale_price}</p>
-                <p className='text-black'>Location: {location}</p>
-                <p className='text-black'>Contact No: {phone}</p>
-                <p className='text-black'>Book Condition: {book_condition}</p>
-                <p className="leading-snug dark:text-gray-400">{Year_of_use} used</p>
-                <p className="leading-snug dark:text-gray-400">{ description?
-                <>Description: {description}</> 
-                : <>No description</>
-                }
-                </p>
-
+                <h3 className="text-xl font-semibold ">{book_name}</h3>
+               <div className='flex justify-between'>
+               <p className='text-black text-sm'>Original <TbCurrencyTaka className='inline'/>{original_price}</p>
+                <p className='text-black'>Sell <TbCurrencyTaka className='inline'/>{resale_price}</p>
+               </div>
+                <div className='flex justify-between'>
+                <p className='text-black'>Condition {book_condition}</p>
+                <p className="leading-snug dark:text-gray-400"><WiTime3 className='inline mr-1'/>{Year_of_use}</p>
+                </div>
                 
                {
                  dbUser.role === 'seller' || dbUser.role === 'admin'  ?
                  <></>
                  : <div className='flex justify-between my-5 '>
-                 <PrimaryButtom><label 
-                 htmlFor="booking-modal" 
+               
+                 <button title='Book Now' className='text-primary text-2xl'><label 
+                 htmlFor="booking-modal" className='cursor-pointer'
                  onClick={()=> setBookProduct(category)}
-                 >Book Now</label></PrimaryButtom>
-                 
+                 ><FaAddressBook /></label></button>
+                 <div className='flex items-center '>
+                 <Link><button className='btn btn-outline btn-xs text-primary text-xm inline'>Details <FaArrowCircleRight className='inline text-primary'/></button></Link>
+                 </div>
+                  
+               
                  <label 
-                 className='btn btn-link'
+                 className='btn btn-link btn-sm'
                  
                  onClick={()=> handleReport(category._id)}
                  >Report Now</label>

@@ -13,5 +13,36 @@
         "category_id": 3,
         "category_name": "Biograpy",
         "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
+    },
+    {
+        "category_id": 4,
+        "category_name": "Crime",
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
+    }
+    ,
+    {
+        "category_id": 5,
+        "category_name": "Adventure stories",
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
+    },
+    {
+        "category_id": 6,
+        "category_name": "Academic",
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
+    },
+    {
+        "category_id": 7,
+        "category_name": "Science fiction",
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
+    },
+    {
+        "category_id": 8,
+        "category_name": "Literature",
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
+    },
+    {
+        "category_id": 9,
+        "category_name": "Others",
+        "category_img": "https://i.ibb.co/rGHbCZh/pic1-2.jpg"
     }
 ]

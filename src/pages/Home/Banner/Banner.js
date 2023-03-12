@@ -1,6 +1,5 @@
 import React from 'react';
 import book from '../../../assets/banner/book-catroon.png'
-import PrimaryButtom from '../../../Components/PrimaryButton/PrimaryButtom';
 import './Banner.css'
 
 const Banner = () => {

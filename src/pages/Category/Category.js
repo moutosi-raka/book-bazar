@@ -45,7 +45,7 @@ const Category = () => {
               categories.length === 0?
               <h1 className='text-center h-[400px] mt-12 text-2xl'>NO Product</h1>  
               :
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 my-12'>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4 my-12'>
             {
               categories.map(category => <BookCart
               key={category._id}

@@ -3,6 +3,7 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../pages/Blog/Blog";
 import BookList from "../../pages/BookList/BookList/BookList";
+import AllCategory from "../../pages/Category/AllCategory/AllCategory";
 import Category from "../../pages/Category/Category";
 import AddProduct from "../../pages/Dashboard/AddProduct/AddProduct";
 import AllSeller from "../../pages/Dashboard/AllSeller/AllSeller";
@@ -35,6 +36,11 @@ export const router = createBrowserRouter([
                 path: '/booklist',
                 element: <PrivateRouter><BookList></BookList></PrivateRouter>,
                 loader: async({params})=> fetch(`http://localhost:5000/category`)
+            },
+            {
+                path: '/category',
+                element: <PrivateRouter><AllCategory></AllCategory></PrivateRouter>,
+                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/${params.id}`)
             },
             {
                 path: '/category/:id',
