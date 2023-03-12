@@ -13,23 +13,43 @@ const Category = () => {
     const navigation = useNavigation();
 
    let categoryName;
-    console.log(categories[0].category_id)
-   if(categories[0].category_id === "1" && categories.length>0)
-   {
-    categoryName= 'Nobel BooKs'
-   }
-  else if(categories[0].category_id === "2" && categories.length>0)
-   {
-    categoryName= 'Poetry Books'
-   }
-  else if(categories[0].category_id === "3"&& categories.length>0)
-   {
-    categoryName= 'Biograpy BooKs'
-   }
-   else
-   {
-     categoryName='Category'
-   }
+    // console.log(categories[0].category_id)
+  //  if(categories[0].category_id === "1" && categories.length>0)
+  //  {
+  //   categoryName= 'Nobel BooKs'
+  //  }
+  // else if(categories[0].category_id === "2" && categories.length>0)
+  //  {
+  //   categoryName= 'Poetry Books'
+  //  }
+  // else if(categories[0].category_id === "3"&& categories.length>0)
+  //  {
+  //   categoryName= 'Biograpy BooKs'
+  //  }
+  // else if(categories[0].category_id === "4"&& categories.length>0)
+  //  {
+  //   categoryName= 'Crime'
+  //  }
+  // else if(categories[0].category_id === "5"&& categories.length>0)
+  //  {
+  //   categoryName= 'Adventure stories'
+  //  }
+  // else if(categories[0].category_id === "6"&& categories.length>0)
+  //  {
+  //   categoryName= 'Academic'
+  //  }
+  // else if(categories[0].category_id === "7"&& categories.length>0)
+  //  {
+  //   categoryName= 'Science fiction'
+  //  }
+  // else if(categories.length>0 && categories[0].category_id === "8")
+  //  {
+  //   categoryName= 'Literature'
+  //  }
+  //  else
+  //  {
+  //    categoryName='Other'
+  //  }
  
 
     if(navigation.state === 'loading'){
@@ -40,7 +60,7 @@ const Category = () => {
    
     return (
         <div className='w-11/12 mx-auto'>
-          <h1 className='text-4xl text-center mt-6 font-bold text-linear'>{categoryName}</h1>
+          {/* <h1 className='text-4xl text-center mt-6 font-bold text-linear'>{categoryName}</h1> */}
             {
               categories.length === 0?
               <h1 className='text-center h-[400px] mt-12 text-2xl'>NO Product</h1>  

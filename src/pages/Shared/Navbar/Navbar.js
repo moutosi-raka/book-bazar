@@ -15,6 +15,7 @@ const Navbar = () => {
   }
   const menuItems = <>
     <li className='px-6 py-2 hover:text-black  mr-2 hover:bg-slate-200 rounded'><Link to='/'>Home</Link></li>
+    <li className='px-6 py-2 hover:text-black  mr-2 hover:bg-slate-200 rounded'><Link to='/category'>Category list</Link></li>
     <li className='px-6 py-2 hover:text-black  mr-2 hover:bg-slate-200 rounded'><Link to='/booklist'>Book List</Link></li>
     <li  className='px-6 py-2 mr-2 hover:text-black hover:bg-slate-200 rounded'><Link to='/blog'>Blog</Link></li>
 
