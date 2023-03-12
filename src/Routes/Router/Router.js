@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category',
                 element: <PrivateRouter><AllCategory></AllCategory></PrivateRouter>,
-                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/${params.id}`)
+               
             },
             {
                 path: '/category/:id',
