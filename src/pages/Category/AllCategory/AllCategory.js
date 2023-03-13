@@ -19,8 +19,7 @@ const AllCategory = () => {
     //   console.log('filter categories', filterCategories)
     return (
         <div>
-            <div className="hero banner px-12"
-         >
+            <div className="hero banner px-12">
             <div className="hero-content flex-col lg:flex-row-reverse w-[60%] ">
                 <img src={book} alt='' className="hidden lg:block w-32 rounded-lg shadow-2xl" />
                 <div>

@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 const BookCart = ({ category , setBookProduct}) => {
-    const {img, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify, date} = category;
+    const {img, _id, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify} = category;
     
     const {user} = useContext(AuthContext);
     const [dbUser, isLoading] = useUser(user?.email);
@@ -50,7 +50,7 @@ const BookCart = ({ category , setBookProduct}) => {
         </div>
         <div className="space-y-4">
             <div className="flex items-center justify-center">
-                <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-40 dark:bg-gray-500" />
+                <img src={img} alt="" className="block  object-center  h-40 dark:bg-gray-500" />
             </div>
             <div className="space-y-2 text-sm">
               
@@ -64,17 +64,15 @@ const BookCart = ({ category , setBookProduct}) => {
                 <p className="leading-snug dark:text-gray-400"><WiTime3 className='inline mr-1'/>{Year_of_use}</p>
                 </div>
                 
-               {
-                 dbUser.role === 'seller' || dbUser.role === 'admin'  ?
-                 <></>
-                 : <div className='flex justify-between my-5 '>
+               
+                 <div className='flex justify-between my-5 '>
                
                  <button title='Book Now' className='text-primary text-2xl'><label 
                  htmlFor="booking-modal" className='cursor-pointer'
                  onClick={()=> setBookProduct(category)}
                  ><FaAddressBook /></label></button>
                  <div className='flex items-center '>
-                 <Link><button className='btn btn-outline btn-xs text-primary text-xm inline'>Details <FaArrowCircleRight className='inline text-primary'/></button></Link>
+                 <Link to={`/bookDetails/${_id}`} ><button className='btn btn-outline btn-xs text-primary text-xm inline'>Details <FaArrowCircleRight className='inline text-primary'/></button></Link>
                  </div>
                   
                
@@ -84,7 +82,7 @@ const BookCart = ({ category , setBookProduct}) => {
                  onClick={()=> handleReport(category._id)}
                  >Report Now</label>
              </div>
-               }
+               
             </div>
         </div>
     </div>

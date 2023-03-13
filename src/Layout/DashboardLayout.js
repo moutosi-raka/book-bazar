@@ -2,6 +2,11 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 import useUser from '../hooks/useUser/useUser';
+import { FaLayerGroup } from "react-icons/fa";
+import { TbReport } from "react-icons/tb";
+import { HiUserGroup } from "react-icons/hi";
+import { ImUserTie } from "react-icons/im";
+import { MdProductionQuantityLimits } from "react-icons/md";
 import Loading from '../pages/Loading/Loading';
 import Navbar from '../pages/Shared/Navbar/Navbar';
 
@@ -25,15 +30,15 @@ const DashboardLayout = () => {
                 <div className="drawer-side ">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-52  bg-slate-900 text-white pt-20">
-                    { dbUser?.role === "buyer" && <li><Link to='/dashboard/myorder'>My Orders</Link></li>}
+                    <li><Link to='/dashboard/myorder'><FaLayerGroup/>My Orders</Link></li>
                     { dbUser?.role === "seller" && <>
-                     <li><Link to='/dashboard/myproduct'>My Product</Link></li>
+                     <li><Link to='/dashboard/myproduct'><MdProductionQuantityLimits/>My Product</Link></li>
                      </>
                      }
                        { dbUser?.role === "admin" && <>
-                       <li><Link to='/dashboard/alluser'>All Buyer</Link></li>
-                        <li><Link to='/dashboard/allseller'>All Seller</Link></li>
-                        <li><Link to='/dashboard/show-report'>Report</Link></li>
+                       <li><Link to='/dashboard/alluser'><HiUserGroup/>All Buyer</Link></li>
+                        <li><Link to='/dashboard/allseller'><ImUserTie/>All Seller</Link></li>
+                        <li><Link to='/dashboard/show-report'><TbReport/>Report</Link></li>
                         </> }
                     </ul>
 

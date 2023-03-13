@@ -6,16 +6,12 @@ import CategoryCart from './CategoryCart/CategoryCart';
 
 const CategoriesSection = () => {
     const [categories, setCategories] = useState([]);
-    // useEffect( ()=>{
-    //     fetch('categories.json')
-    //     .then( res => res.json())
-    //     .then(data => setCategories(data))
-    // },[])
     useEffect( ()=>{
-        fetch('http://localhost:5000/category')
+        fetch('categories.json')
         .then( res => res.json())
         .then(data => setCategories(data))
     },[])
+   
     return (
         <div className='my-12 w-11/12 mx-auto'>
            <h1 className='my-8 text-3xl font-bold text-center text-linear'>Book Categories</h1>

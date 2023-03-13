@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../pages/Blog/Blog";
+import BookDetails from "../../pages/BookDetails/BookDetails";
 import BookList from "../../pages/BookList/BookList/BookList";
 import AllCategory from "../../pages/Category/AllCategory/AllCategory";
 import Category from "../../pages/Category/Category";
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
             {
                 path: '/booklist',
                 element: <PrivateRouter><BookList></BookList></PrivateRouter>,
-                loader: async({params})=> fetch(`http://localhost:5000/category`)
+                loader: async()=> fetch(`http://localhost:5000/category`)
             },
             {
                 path: '/category',
@@ -48,16 +49,17 @@ export const router = createBrowserRouter([
                 loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/${params.id}`)
             },
             {
+                path: '/bookDetails/:id',
+                element: <PrivateRouter><BookDetails></BookDetails></PrivateRouter>,
+                loader: async({params})=> fetch(`http://localhost:5000/bookDetails/${params.id}`)
+            },
+            {
                 path: '/login',
                 element: <Login></Login>
             },
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
-            },
-            {
-                path: '/blog',
-                element: <Blog></Blog>
             }
         ]
     },

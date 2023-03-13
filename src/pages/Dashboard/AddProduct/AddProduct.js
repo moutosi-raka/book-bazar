@@ -33,6 +33,7 @@ const AddProduct = () => {
                    sellerName: user.displayName,
                    sellerEmail: user.email,
                    book_name: data.book_name,
+                   author_name: data.author_name,
                    category_id: data.category_id,
                    original_price: data.original_price,
                    resale_price: data.resale_price,
@@ -83,7 +84,18 @@ const AddProduct = () => {
                         <input type="text"
                             {...register("book_name",
                                 { required: "Name is required" })}
-                            placeholder="Your name"
+                            placeholder="Book name"
+                            className="input input-bordered" />
+                        {errors.name && <p className='text-red-700' role="alert">{errors.name?.message}</p>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label ">
+                            <span className="label-text text-white">Author Name</span>
+                        </label>
+                        <input type="text"
+                            {...register("author_name",
+                                { required: "Author Name is required" })}
+                            placeholder="Author name"
                             className="input input-bordered" />
                         {errors.name && <p className='text-red-700' role="alert">{errors.name?.message}</p>}
                     </div>
@@ -97,7 +109,7 @@ const AddProduct = () => {
                         <option value='1' selected>Nobel</option>
                         <option value='2'>Poetry</option>
                         <option value='3'>Biograpy</option>
-                        <option value='4'>Crime</option>
+                        <option value='4'>NonFiction</option>
                         <option value='5'>Adventure stories</option>
                         <option value='6'>Academic</option>
                         <option value='7'>Science fiction</option>
@@ -143,7 +155,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text text-white">Description</span>
                         </label>
-                        <input type="text"
+                        <textarea type="text"
                             {...register("description")}
                             className="input input-bordered" />
                     </div>
