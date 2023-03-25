@@ -15,13 +15,13 @@ const ShowReport = () => {
     const { data: Complaints = [], refetch } = useQuery({
         queryKey: ['category', report],
         queryFn: async () => {
-            const res = await fetch(`https://book-bazar-server-moutosi-raka.vercel.app/categorys?report=${report}`);
+            const res = await fetch(`http://localhost:5000/api/report/list?report=${report}`);
             const data = await res.json();
             return data;
         }
     })
     const handleDeleteProduct =(report) =>{
-        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/product/${report._id}`,
+        fetch(`http://localhost:5000/api/product/delete/${report._id}`,
         {
             method: 'DELETE',
             headers: {
@@ -48,7 +48,7 @@ const ShowReport = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Reporter Name</th>
+                            {/* <th>Reporter Name</th> */}
                             <th>Book Name</th>
                             <th>price</th>
                             <th>Complaint</th>
@@ -59,7 +59,7 @@ const ShowReport = () => {
                         {
                             Complaints.map((Complaint, i) => <tr key={Complaint._id}>
                                 <th>{i + 1}</th>
-                                <td>{Complaint.reports}</td>
+                                {/* <td>{Complaint.}</td> */}
                                 <td>{Complaint.book_name}</td>
                                 <td>{Complaint.resale_price}</td>
                                 <td>{Complaint.report}</td>

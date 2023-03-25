@@ -11,17 +11,17 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
     const handleBooking = event =>{
         event.preventDefault();
         const form = event.target;
-        const buyerName = form.buyerName.value;
+        // const buyerName = form.buyerName.value;
         const phone = form.phone.value;
         const meetingLocation= form.location.value;
-        const buyerEmail= form.email.value;
+        // const buyerEmail= form.email.value;
       
         const booking = {
             bookDate: date,
             category_name,
             category_id: _id, 
-            buyerName,
-            buyerEmail,
+            buyerName : user?.displayName,
+            buyerEmail : user?.email,
             user_uid: user.uid,
             book_name,
             img,
@@ -29,7 +29,7 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
             phone,
             meetingLocation
         }
-        fetch('https://book-bazar-server-moutosi-raka.vercel.app/bookings',{
+        fetch('http://localhost:5000/api/booking/create',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -54,12 +54,12 @@ const BookingModel = ({bookProduct, setBookProduct}) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">Book Category: {category_name}</h3>
+                    {/* <h3 className="text-lg font-bold">Book Category: {category_name}</h3> */}
                     <form onSubmit={handleBooking}>
-                    <input name='buyerName' type="text" defaultValue={user?.displayName} disabled className="input mb-2 input-bordered w-full " />
-                    <input name='email' type="email" defaultValue={user?.email} disabled className="input mb-2 input-bordered w-full" />
+                    {/* <input name='buyerName' type="text" defaultValue={user?.displayName} disabled className="input mb-2 input-bordered w-full " /> */}
+                    {/* <input name='email' type="email" defaultValue={user?.email} disabled className="input mb-2 input-bordered w-full" /> */}
                     <input name='bookName' type="text" value={book_name}
-                    disabled className="input mb-2 input-bordered w-full" />
+                    disabled className="input mb-2 input-bordered w-full mt-12" />
                     <input type="text" value={ resale_price}
                     name='price' 
                     disabled className="input my-2 input-bordered w-full " />

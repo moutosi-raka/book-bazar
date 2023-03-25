@@ -5,7 +5,7 @@ const useBuyer = email =>{
 
     useEffect( ()=>{
         if(email){
-            fetch(`https://book-bazar-server-moutosi-raka.vercel.app/all-user-info/buyer/${email}`)
+            fetch(`http://localhost:5000/api/user/buyer/${email}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);

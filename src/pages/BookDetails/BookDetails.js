@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { TbCurrencyTaka } from "react-icons/tb";
 import { TbClock } from "react-icons/tb";
 import { MdPhoneAndroid , MdEmail} from "react-icons/md";
 import book from '../../assets/banner/book-catroon.png'
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const BookDetails = () => {
+    const {setBookProduct} = useContext(AuthContext);
     const bookDetails = useLoaderData();
     const { img, _id, book_name, resale_price, original_price, location, Year_of_use, sellerName, description, phone, book_condition, author_name, verify, sellerEmail } = bookDetails;
-    console.log('kk', bookDetails)
+    
+   
     return (
         <div>
             <div className="hero banner px-12">
@@ -36,6 +39,19 @@ const BookDetails = () => {
                     <h4 className='text-xl font-bold mb-2 mt-4'>Contact Information</h4>
                     <p><MdPhoneAndroid  className='inline'/> {phone}</p>
                     <p><MdEmail  className='inline'/> {sellerEmail}</p>
+
+                  <div className='mt-4'>
+
+                  <button title='Book Now' className='btn btn-primary btn-sm text-white mr-4'><label 
+                 htmlFor="booking-modal" className='cursor-pointer text-sm'
+                 onClick={()=> setBookProduct(bookDetails)}
+                 >Book Now</label></button> 
+                  <label 
+                   htmlFor="report-modal"
+                    className='btn btn-primary btn-sm text-white' 
+                    // onClick={()=> handleReport(_id)}
+                 > Report</label>
+                  </div>
                 </div>
             </div>
         </div>

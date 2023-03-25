@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import BookCart from '../../Category/BookCart/BookCart';
 import Banner from '../../Home/Banner/Banner';
 import Loading from '../../Loading/Loading';
@@ -8,8 +9,8 @@ import BookListBanner from '../BookListBanner/BookListBanner';
 
 
 const BookList = () => {
+    const {setBookProduct} = useContext(AuthContext);
     const categories = useLoaderData();
-    const [bookProduct, setBookProduct] = useState(null);
     const navigation = useNavigation();
 
     if(navigation.state === 'loading'){

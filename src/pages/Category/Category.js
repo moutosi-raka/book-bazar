@@ -1,18 +1,17 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import BookCart from './BookCart/BookCart';
-import BookingModel from './BookingModel/BookingModel';
+
 
 
 const Category = () => {
    
     const categories = useLoaderData();
-    const [bookProduct, setBookProduct] = useState(null);
     const navigation = useNavigation();
 
-   let categoryName;
+  //  let categoryName;
     // console.log(categories[0].category_id)
   //  if(categories[0].category_id === "1" && categories.length>0)
   //  {
@@ -70,18 +69,12 @@ const Category = () => {
               categories.map(category => <BookCart
               key={category._id}
               category={category}
-              setBookProduct={setBookProduct}
-              
               ></BookCart>)  
             }
             </div> 
             } 
 
-        { bookProduct 
-        && <BookingModel 
-        bookProduct={bookProduct}
-        setBookProduct={setBookProduct}
-        ></BookingModel>}
+     
        
         </div>
         

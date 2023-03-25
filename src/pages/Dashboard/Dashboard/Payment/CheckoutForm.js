@@ -18,7 +18,7 @@ const CheckoutForm = ({booking}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://book-bazar-server-moutosi-raka.vercel.app/create-payment-intent", {
+        fetch("http://localhost:5000/api/payment/create/intent", {
           method: "POST",
           headers: { "Content-Type": "application/json"
         },
@@ -80,7 +80,7 @@ const CheckoutForm = ({booking}) => {
          transactionId: paymentIntent.id
       }
       //stored payment in database
-      fetch('https://book-bazar-server-moutosi-raka.vercel.app/payments',
+      fetch('http://localhost:5000/api/payment/create',
       {
         method: 'POST',
         headers: {

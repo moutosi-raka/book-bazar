@@ -13,7 +13,7 @@ const MyProduct = () => {
     const closeModal = ()=>{
         setDeleteProduct(null);
     }
-    const url = `https://book-bazar-server-moutosi-raka.vercel.app/category/product?email=${user?.email}`;
+    const url = `http://localhost:5000/api/product/list?email=${user?.email}`;
 
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['category', user?.email],
@@ -29,7 +29,7 @@ const MyProduct = () => {
     })
 
     const handleAds = id => {
-        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/product/${id}`, {
+        fetch(`http://localhost:5000/api/product/update/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -45,7 +45,7 @@ const MyProduct = () => {
     }
 
     const handleDeleteProduct =(product) =>{
-        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/product/${product._id}`,
+        fetch(`http://localhost:5000/api/product/delete/${product._id}`,
         {
             method: 'DELETE',
             headers: {

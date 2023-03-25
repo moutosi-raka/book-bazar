@@ -1,30 +1,48 @@
-import { format } from 'date-fns';
+
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useUser from '../../../hooks/useUser/useUser';
+;
 
-const ReportModal = ({reportProduct, setReportProduct}) => {
-    const {_id, book_name, resale_price} = reportProduct;
-    const {user} = useContext(AuthContext);
-    const date = format(new Date(), 'PPpp') ;
+const ReportModal = () => {
+    const {user, setReportProduct, reportProduct} = useContext(AuthContext);
+    const [dbUser] = useUser(user?.email);
+    const {_id, book_name} = reportProduct;
 
-    const handleReporting = event =>{
+
+    const handleReporting = (event, id) =>{
         event.preventDefault();
         const form = event.target;
-        const reporterName = form.reporterName.value;
-        const report = form.report.value;
-        const reporterEmail= form.email.value;
+        const reportDescription = form.reportInfo.value;
+      
       
         const reportInfo = {
-            reportDate: date,
-            reporterName,
-            productId: _id,
-            reporterEmail,
-            book_name,
-            price: resale_price,
-            report
+            reportDescription,
+            reporterName: dbUser.userName,
+            productName: book_name, 
+            productId: id
         }
-        fetch('https://book-bazar-server-moutosi-raka.vercel.app/reports',{
+
+        console.log('report', reportInfo)
+
+    // fetch(`http://localhost:5000/category/report/${id}`,{
+    //     method: 'PUT',
+    //     headers: {
+    //         authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //     },
+    //     body: JSON.stringify(reportInfo)
+    // })
+    // .then(res => res.json())
+    // .then(data =>{
+    //     if(data.modifiedCount>0){
+    //         toast.success('report successfully');
+    //         console.log('report data', data);
+    //         setReportProduct(null)
+    //     }
+    // })
+
+        fetch('http://localhost:5000/api/report/create',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -37,7 +55,7 @@ const ReportModal = ({reportProduct, setReportProduct}) => {
             if(data.acknowledged)
             {
                 setReportProduct(null);
-                toast.success('Booked confirmed')
+                toast.success('Report successfully');
             }    
         })
         
@@ -48,22 +66,29 @@ const ReportModal = ({reportProduct, setReportProduct}) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="report-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <form onSubmit={handleReporting}>
-                    <input name='reporterName' type="text" defaultValue={user?.displayName} disabled className="input mb-2 input-bordered w-full " />
-                    <input name='email' type="email" defaultValue={user?.email} disabled className="input mb-2 input-bordered w-full" />
-                    <input name='bookName' type="text" value={book_name}
-                    disabled className="input mb-2 input-bordered w-full" />
-                    <input type="text" value={ resale_price}
-                    name='price' 
-                    disabled className="input my-2 input-bordered w-full " />
-                    <textarea className="textarea textarea-bordered w-full"
-                    name='report'
-                    required placeholder="Write your complaint"></textarea>
-                    <input type="text" value={date} disabled className="input mb-2 input-bordered w-full" />
-                    <br></br>
-                    <div className='w-full'>
-                    <button className='btn w-full'>Reported</button>
+                    <form onSubmit={(event)=>handleReporting(event, _id)}>
+                  <div className='mt-12'>
+                          <div>
+                            <div className='flex items-center mb-2'>
+                              <input type="radio" className='radio radio-info mr-3' value="false information" name="reportInfo" /> <span>False Information</span>  
+                            </div>
+
+                            <div className='flex items-center mb-2'>
+                             <input type="radio" className='radio radio-info mr-3' value="Unauthorized Sales" name="reportInfo" /> Unauthorized Sales  
+                            </div>
+
+                            <div className='flex items-center mb-2'>
+                             <input type="radio" className='radio radio-info mr-3' value="High Price" name="reportInfo" /> High Price 
+                            </div>
+
+                            <div className='flex items-center mb-2'>
+                              <input type="radio" className='radio radio-info mr-3' value="Other" name="reportInfo" /> Other
+                           </div>
+                 </div>
+                    <div className='w-full flex justify-end'>
+                    <button className='btn btn-error'>Submit</button>
                     </div>
+                  </div>
                     </form>
                 </div>
             </div>

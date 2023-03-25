@@ -14,7 +14,7 @@ const GoogleSignUp = () => {
     const [token] = useToken(createUserEmail)
     const navigate = useNavigate();
 
-    const url = 'https://book-bazar-server-moutosi-raka.vercel.app/all-user-info';
+    const url = 'http://localhost:5000/api/user/list';
     const {data: userEmails = []} = useQuery({
         queryKey: [],
         queryFn: async()=>{
@@ -52,7 +52,7 @@ const GoogleSignUp = () => {
             userName: name,
             role : 'buyer'
         }
-        fetch('https://book-bazar-server-moutosi-raka.vercel.app/all-user-info',{
+        fetch('http://localhost:5000/api/user/create',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -68,7 +68,7 @@ const GoogleSignUp = () => {
     } 
     return (
         <div>
-             <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>Continue With Google</button>
+             <button onClick={handleGoogleSignIn} className='btn btn-outline w-full text-white'>Continue With Google</button>
         </div>
     );
 };

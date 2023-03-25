@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firebase.config';
+import toast from 'react-hot-toast';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, signInWithPopup} from 'firebase/auth';
+
 
 
 export const AuthContext = createContext();
@@ -9,8 +11,13 @@ const auth = getAuth(app);
 const AuthProvider = ({children}) => {
      const [user, setUser] = useState(null);
      const [loading, setLoading] = useState(true);
+     const [reportProduct, setReportProduct] = useState(null);
+     const [bookProduct, setBookProduct] = useState(null);
 
-    const createUser = (email, password)=>
+   
+  
+    
+     const createUser = (email, password)=>
     {   
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
@@ -34,6 +41,21 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signOut(auth);
     }
+
+    // const handleReport = id =>{
+    //     fetch(`http://localhost:5000/category/report/${id}`,{
+    //         method: 'PUT',
+    //         headers: {
+    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         if(data.modifiedCount>0){
+    //             toast.success('report successfully');
+    //         }
+    //     })
+    // }
     
     useEffect( ()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
@@ -51,6 +73,10 @@ const AuthProvider = ({children}) => {
         user,
         logOut,
         loading,
+        reportProduct,
+        setReportProduct,
+        setBookProduct,
+        bookProduct,
         googleSignIn,
         updateUser,
         login

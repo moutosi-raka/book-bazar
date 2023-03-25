@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
             {
                 path: '/booklist',
                 element: <PrivateRouter><BookList></BookList></PrivateRouter>,
-                loader: async()=> fetch(`http://localhost:5000/category`)
+                loader: async()=> fetch(`http://localhost:5000/api/category/list`)
             },
             {
                 path: '/category',
@@ -46,12 +46,12 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRouter><Category></Category></PrivateRouter>,
-                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/category/${params.id}`)
+                loader: async({params})=> fetch(`http://localhost:5000/api/category/list/${params.id}`)
             },
             {
                 path: '/bookDetails/:id',
                 element: <PrivateRouter><BookDetails></BookDetails></PrivateRouter>,
-                loader: async({params})=> fetch(`http://localhost:5000/bookDetails/${params.id}`)
+                loader: async({params})=> fetch(`http://localhost:5000/api/product/list/${params.id}`)
             },
             {
                 path: '/login',
@@ -95,7 +95,7 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/payment/:id",
                 element: <Payment></Payment>,
-                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/booking/${params.id}`)
+                loader: async({params})=> fetch(`http://localhost:5000/api/booking/list/${params.id}`)
             },
             {
                 path: "/dashboard/alluser",

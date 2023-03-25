@@ -45,11 +45,12 @@ const AddProduct = () => {
                    book_condition: data.book_condition,
                    verify: dbUser.verify,
                    paid: false,
+                   report: "false",
                    date
 
                 }
                 //saved seller info database
-                fetch('https://book-bazar-server-moutosi-raka.vercel.app/category',{
+                fetch('http://localhost:5000/api/product/create',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
