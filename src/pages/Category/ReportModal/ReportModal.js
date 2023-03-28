@@ -14,33 +14,21 @@ const ReportModal = () => {
     const handleReporting = (event, id) =>{
         event.preventDefault();
         const form = event.target;
-        const reportDescription = form.reportInfo.value;
+        const reason = form.reportInfo.value;
+        console.log('user',dbUser)
       
       
         const reportInfo = {
-            reportDescription,
+            reason,
             reporterName: dbUser.userName,
             productName: book_name, 
-            productId: id
+            productId: id,
+            uid: dbUser._id,
+            report: false
         }
 
         console.log('report', reportInfo)
 
-    // fetch(`http://localhost:5000/category/report/${id}`,{
-    //     method: 'PUT',
-    //     headers: {
-    //         authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //     },
-    //     body: JSON.stringify(reportInfo)
-    // })
-    // .then(res => res.json())
-    // .then(data =>{
-    //     if(data.modifiedCount>0){
-    //         toast.success('report successfully');
-    //         console.log('report data', data);
-    //         setReportProduct(null)
-    //     }
-    // })
 
         fetch('http://localhost:5000/api/report/create',{
             method: 'POST',
@@ -86,7 +74,7 @@ const ReportModal = () => {
                            </div>
                  </div>
                     <div className='w-full flex justify-end'>
-                    <button className='btn btn-error'>Submit</button>
+                    <button className='btn btn-primary btn-sm text-white'>Submit</button>
                     </div>
                   </div>
                     </form>

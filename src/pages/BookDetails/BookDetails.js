@@ -7,7 +7,8 @@ import book from '../../assets/banner/book-catroon.png'
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const BookDetails = () => {
-    const {setBookProduct} = useContext(AuthContext);
+    
+    const {setBookProduct, setReportProduct} = useContext(AuthContext);
     const bookDetails = useLoaderData();
     const { img, _id, book_name, resale_price, original_price, location, Year_of_use, sellerName, description, phone, book_condition, author_name, verify, sellerEmail } = bookDetails;
     
@@ -49,7 +50,7 @@ const BookDetails = () => {
                   <label 
                    htmlFor="report-modal"
                     className='btn btn-primary btn-sm text-white' 
-                    // onClick={()=> handleReport(_id)}
+                    onClick={()=>  setReportProduct(bookDetails)}
                  > Report</label>
                   </div>
                 </div>

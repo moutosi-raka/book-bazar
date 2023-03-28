@@ -5,7 +5,7 @@ import ConfirmationModal from '../../Shared/ConfirmationModel/ConfirmationModal'
 
 const ShowReport = () => {
 
-    const report = "true";
+    
     const [deleteProduct, setDeleteProduct] = useState(null);
     const closeModal = ()=>{
         setDeleteProduct(null);
@@ -13,27 +13,29 @@ const ShowReport = () => {
 
 
     const { data: Complaints = [], refetch } = useQuery({
-        queryKey: ['category', report],
+        queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/report/list?report=${report}`);
+            const res = await fetch(`http://localhost:5000/api/report/list`);
             const data = await res.json();
             return data;
         }
     })
-    const handleDeleteProduct =(report) =>{
-        fetch(`http://localhost:5000/api/product/delete/${report._id}`,
+    const handleUpdateProduct =(report) =>{
+        fetch(`http://localhost:5000/api/report/update/${report.productId}`,
         {
-            method: 'DELETE',
+            method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
         .then(res => res.json())
         .then(data =>{
-            if(data.deletedCount>0){
+            if(data.acknowledged){
                 console.log(data);
                 refetch();
-                toast('Delete successfully')
+                toast('Delete successfully');
+               
+
             }
         
         })
@@ -49,23 +51,36 @@ const ShowReport = () => {
                         <tr>
                             <th></th>
                             {/* <th>Reporter Name</th> */}
+                            <th>Reporter Name</th>
                             <th>Book Name</th>
-                            <th>price</th>
                             <th>Complaint</th>
-                            <th>Delete</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {
+                            Complaints.length === 0 ?
+                          <tr className='h-40'>
+                            <td></td>
+                            <td></td>
+                            <td className='text-2xl text-center'>No Report</td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                             :
                             Complaints.map((Complaint, i) => <tr key={Complaint._id}>
-                                <th>{i + 1}</th>
+                                <td>{i + 1}</td>
                                 {/* <td>{Complaint.}</td> */}
-                                <td>{Complaint.book_name}</td>
-                                <td>{Complaint.resale_price}</td>
-                                <td>{Complaint.report}</td>
-                                <th>
-                                    <label onClick={() => setDeleteProduct(Complaint)} htmlFor="confirmation-modal" className="btn bg-red-700 text-white btn-xs ">Delete</label>
-                                </th>
+                                <td>{Complaint.reporterName}</td>
+                                <td>{Complaint.productName}</td>
+                                <td>{Complaint.reason}</td>
+                                <td>
+                                    {
+                                        Complaint.report ? <button disabled className='btn btn-primary btn-sm text-white '>Hid</button> : 
+                                        <label onClick={() => setDeleteProduct(Complaint)} htmlFor="confirmation-modal" className="btn btn-primary text-white btn-xs ">Hide Product</label>
+                                    }
+                             
+                                </td>
                             </tr>)
                         }
                     </tbody>
@@ -76,8 +91,8 @@ const ShowReport = () => {
                 title={`Are you sure to detele product`}
                 message={`if you delete ${deleteProduct.book_name} It cannot be undone.`}
                 closeModal={closeModal}
-                successButtonName = "Delete"
-                successAction={handleDeleteProduct}
+                successButtonName = "Hide"
+                successAction={handleUpdateProduct}
                 modalData = {deleteProduct}
                 ></ConfirmationModal>
             }
