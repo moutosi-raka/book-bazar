@@ -25,7 +25,7 @@ const ClientReview = () => {
     return (
         <div className='my-12 w-11/12 mx-auto'>
             <h1 className='my-12 text-3xl font-bold text-center text-linear'>Client Review</h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 ">
             {
                 clients.map(client => <ClientCart
                     client={client}

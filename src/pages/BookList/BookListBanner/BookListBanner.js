@@ -1,7 +1,7 @@
 import React from 'react';
 import book from '../../../assets/banner/book-catroon.png'
 
-const BookListBanner = () => {
+const BookListBanner = ({setQuery}) => {
     return (
         <div>
         <div className="hero banner px-12"
@@ -10,7 +10,7 @@ const BookListBanner = () => {
                 <img src={book} alt='' className="hidden lg:block w-32 rounded-lg shadow-2xl" />
                 <div>
                 <div className="form-control mt-8">
-                   <input type="text" placeholder="What are you looking for?" className="input input-bordered w-96" />
+                   <input onChange={(e)=>setQuery(e.target.value)} type="text" placeholder="What are you looking for?" className="input input-bordered w-48 md:w-96" />
                    </div>
                    
                 </div>

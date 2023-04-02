@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import useUser from '../../../hooks/useUser/useUser';
@@ -9,6 +9,7 @@ const ReportModal = () => {
     const {user, setReportProduct, reportProduct} = useContext(AuthContext);
     const [dbUser] = useUser(user?.email);
     const {_id, book_name} = reportProduct;
+    const [disable, setDisable] = useState(false)
 
 
     const handleReporting = (event, id) =>{
@@ -43,6 +44,7 @@ const ReportModal = () => {
             if(data.acknowledged)
             {
                 setReportProduct(null);
+                setDisable(true);
                 toast.success('Report successfully');
             }    
         })
@@ -74,7 +76,7 @@ const ReportModal = () => {
                            </div>
                  </div>
                     <div className='w-full flex justify-end'>
-                    <button className='btn btn-primary btn-sm text-white'>Submit</button>
+                    <button className='btn btn-primary btn-sm text-white' disabled={disable? true : false}>Submit</button>
                     </div>
                   </div>
                     </form>

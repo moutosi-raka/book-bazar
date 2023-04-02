@@ -17,7 +17,7 @@ const Payment = () => {
     }
     const {book_name, price, bookDate}=booking;
     return (
-        <div>
+        <div className='text-white'>
             <h1 className='text-3xl f-family-abril fw  my-8'>Payment for {book_name}</h1>
             <p>Please pay <strong>{price}</strong> for your booking {bookDate}</p>
             <div className='w-96 my-12'>

@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import './Navbar.css'
-import { FaUserAlt } from "react-icons/fa";
+import profile from '../../../assets/client/profile.jpg';
 import { HiTemplate } from "react-icons/hi";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const {pathname} = useLocation();
 
   const handleLogOut = () => {
     logOut()
@@ -57,27 +58,41 @@ const Navbar = () => {
               <div className="dropdown dropdown-end">
               <label tabIndex={4} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} alt="" />
+                  {
+                    user.photoURL? 
+                    <img src={user?.photoURL} alt="" />
+                    :
+                    <img src={profile} alt="" />
+                  }
+                  
                 </div>
               </label>
             <ul tabIndex={0} className="mt-3 p-2 shadow  menu-compact dropdown-content bg-base-100 rounded-box w-52 absolute z-20 text-black">
-                <li className='p-3 hover:bg-slate-200 rounded'>
+                <li>
                   <Link to='/dashboard' className="justify-between">
+                  <button  className='p-3 hover:bg-slate-200 rounded w-full text-left'>
                   Dashboard
+                  </button>
+                  </Link>  
+                </li>
+                <li>
+                  <Link onClick={handleLogOut} className=''>
+                    <button className='p-3 hover:bg-slate-200 rounded w-full text-left'>
+                     Log out
+                    </button>
                   </Link>
                 </li>
-                <li className='p-3 hover:bg-slate-200 rounded'><Link onClick={handleLogOut} className=''>Log out</Link></li>
               </ul>
             </div>
             : 
             <></>
             }
       
-       <label
+    { pathname.includes("dashboard") &&  <label
           htmlFor="dashboard-drawer"
           tabIndex={3} className="btn btn-ghost lg:hidden flex justify-end">
          <HiTemplate className='text-2xl'></HiTemplate>
-        </label>
+        </label>}
      {/* <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
       </div>
     </div>

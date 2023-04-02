@@ -87,6 +87,17 @@ const MyProduct = () => {
                     </thead>
                     <tbody>
                         {
+                            myProducts.length === 0 ?
+                            <tr  className='h-40'>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td className='text-center text-2xl'>No Product</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            :
                             myProducts.map((myProduct, i) => <tr key={myProduct._id}>
                                 <th>{i + 1}</th>
                                 <td>

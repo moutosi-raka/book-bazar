@@ -37,6 +37,15 @@ const MyOrder = () => {
     </thead>
     <tbody>
         {
+          bookings.length === 0 ?
+          <tr className='h-40'>
+          <td></td>
+          <td></td>
+          <td className='text-center text-2xl'>No Order</td>
+          <td></td>
+          <td></td>
+        </tr>
+        :
             bookings.map((book, i)=>  <tr key={book._id}>
             <th>{i+1}</th>
             <td>

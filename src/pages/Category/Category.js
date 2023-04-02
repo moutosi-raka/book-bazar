@@ -59,7 +59,7 @@ const Category = () => {
    
     return (
         <div className='w-11/12 mx-auto'>
-          {/* <h1 className='text-4xl text-center mt-6 font-bold text-linear'>{categoryName}</h1> */}
+        
             {
               categories.length === 0?
               <h1 className='text-center h-[400px] mt-12 text-2xl text-white'>NO Product</h1>  

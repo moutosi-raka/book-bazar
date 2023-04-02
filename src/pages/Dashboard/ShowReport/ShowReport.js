@@ -53,7 +53,7 @@ const ShowReport = () => {
                             {/* <th>Reporter Name</th> */}
                             <th>Reporter Name</th>
                             <th>Book Name</th>
-                            <th>Complaint</th>
+                            <th>Reason</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -76,7 +76,7 @@ const ShowReport = () => {
                                 <td>{Complaint.reason}</td>
                                 <td>
                                     {
-                                        Complaint.report ? <button disabled className='btn btn-primary btn-sm text-white '>Hid</button> : 
+                                        Complaint.report ? <></> : 
                                         <label onClick={() => setDeleteProduct(Complaint)} htmlFor="confirmation-modal" className="btn btn-primary text-white btn-xs ">Hide Product</label>
                                     }
                              

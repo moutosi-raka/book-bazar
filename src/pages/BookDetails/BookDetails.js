@@ -25,11 +25,11 @@ const BookDetails = () => {
                 </div>
             </div>
 
-            <div className='px-12 my-8 grid grid-cols-3'>
+            <div className='px-12 my-8 grid grid-cols-1 lg:grid-cols-3'>
                 <div className='p-4'>
                 <img src={img} alt='' className="hidden lg:block h-72 border-slate-400 border-8" />
                 </div>
-                <div className='px-8 col-span-2 text-slate-300'>
+                <div className='px-8 lg:col-span-2 text-slate-300'>
                     <p ><span className='font-serif font-semibold border-slate-500'>Post by: </span><span className='uppercase'>{sellerName}</span></p>
                     <p><span className='font-serif font-semibold border-slate-500'>Original Price: </span> <TbCurrencyTaka className='inline'/>{original_price}</p>
                     <p> <span className='font-serif font-semibold border-slate-500'>Selling Price: </span><TbCurrencyTaka  className='inline'/>{resale_price}</p>
@@ -43,13 +43,13 @@ const BookDetails = () => {
 
                   <div className='mt-4'>
 
-                  <button title='Book Now' className='btn btn-primary btn-sm text-white mr-4'><label 
+                  <button title='Book Now' className='btn btn-primary btn-sm text-white mr-4 mt-2'><label 
                  htmlFor="booking-modal" className='cursor-pointer text-sm'
                  onClick={()=> setBookProduct(bookDetails)}
                  >Book Now</label></button> 
                   <label 
                    htmlFor="report-modal"
-                    className='btn btn-primary btn-sm text-white' 
+                    className='btn btn-primary btn-sm text-white mt-2' 
                     onClick={()=>  setReportProduct(bookDetails)}
                  > Report</label>
                   </div>
