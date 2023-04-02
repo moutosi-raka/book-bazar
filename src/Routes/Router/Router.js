@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
             {
                 path: '/booklist',
                 element: <PrivateRouter><BookList></BookList></PrivateRouter>,
-                // loader: async()=> fetch(`http://localhost:5000/api/category/list`)
+                loader: async()=> fetch(`http://localhost:5000/api/category/list`)
             },
             {
                 path: '/category',
