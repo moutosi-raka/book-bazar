@@ -16,7 +16,7 @@ const Home = () => {
             return data;
         }
     })
-    const adsItems = adsProducts.filter(item => item.addADS && item.paid === false);
+    const adsItems = adsProducts.filter(item => item.addADS);
    
 
     return (

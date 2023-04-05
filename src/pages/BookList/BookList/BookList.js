@@ -10,49 +10,38 @@ import BookListBanner from '../BookListBanner/BookListBanner';
 const BookList = () => {
   const { setBookProduct } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
-  const [query, setQuery] = useState('');
-  // const [count, setCount] = useState();
+  const [search, setSearch] = useState('');
+  const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(2);
-  // const [pages, setPages] = useState(5);
-  const {count} = useLoaderData();
+  const [size, setSize] = useState(5);
   const navigation = useNavigation();
 
+  useEffect( ()=>{
+    fetch(`http://localhost:5000/api/category/list?search=${search}&page=${page}&size=${size}`)
+        .then(res => res.json())
+        .then(data => {
+          setCategories(data.products)
+          setCount(data.count)
+        })
+  }, [search, page, size])
 
+  const pages = Math.ceil(count / size);
+  console.log('page', pages, count)
 
-  // useEffect( ()=>{
-  //   setPages(Math.ceil(count / size));
-  // },[count,size])
-   const pages = Math.ceil(count / size);
- 
-
-  const fetchCategories = () => {
-    fetch(`http://localhost:5000/api/category/list`)
-      .then(res => res.json())
-      .then(data => {
-        setCategories(data.products)
-        // setCount(data.count)
-      })
+  const handleSearch = event =>{
+    event.preventDefault();
+    setSearch(event.target.search.value)
+    console.log(event.target.search.value)
+    
   }
 
-
-
-  useEffect(() => {
-    if (query === "") {
-      fetchCategories();
-    }
-    else {
-      setCategories(categories.filter(category => category.book_name.toLowerCase().includes(query.toLowerCase())));
-    }
-
-  }, [query])
   if (navigation.state === 'loading') {
     return <Loading></Loading>
   }
   return (
     <div>
       <BookListBanner
-        setQuery={setQuery}
+        handleSearch={handleSearch}
       ></BookListBanner>
       <div className='w-11/12 mx-auto'>
         {
@@ -72,7 +61,7 @@ const BookList = () => {
         }
 
       <div className='flex justify-end my-3'>
-        <p className='text-white'>Currently Selected Pages: {page+1}</p>
+        <p className='text-white'>Currently Selected Pages: {page}</p>
       </div>
       <div className='flex justify-end mb-5'>
       <div className="btn-group">
@@ -81,13 +70,18 @@ const BookList = () => {
             key={number} 
             className={page === number ? "btn btn-active" : "btn"}
             onClick={()=> setPage(number)}
-            >{number+1}</button>)
+            >{number}</button>)
         }
-        {/* <button className="btn btn-active">1</button>
-        <button className="btn ">2</button>
-        <button className="btn">3</button>
-        <button className="btn">4</button> */}
-      </div>
+
+      </div>  
+        <select onChange={ e => setSize(e.target.value)} className="select select-bordered ml-5">
+          <option selected value='5'>5</option>
+          <option  value='10'>10</option>
+          <option value='15'>15</option>
+          <option value='20'>20</option>
+        </select>
+       
+     
       </div>
   
       </div>
