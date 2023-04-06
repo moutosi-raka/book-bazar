@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
-import Blog from "../../pages/Blog/Blog";
 import BookDetails from "../../pages/BookDetails/BookDetails";
 import BookList from "../../pages/BookList/BookList/BookList";
 import AllCategory from "../../pages/Category/AllCategory/AllCategory";
@@ -36,7 +35,7 @@ export const router = createBrowserRouter([
             {
                 path: '/booklist',
                 element: <PrivateRouter><BookList></BookList></PrivateRouter>,
-                // loader: async()=> fetch(`http://localhost:5000/api/category/list`)
+           
             },
             {
                 path: '/category',
@@ -46,12 +45,12 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRouter><Category></Category></PrivateRouter>,
-                loader: async({params})=> fetch(`http://localhost:5000/api/category/list/${params.id}`)
+                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/category/list/${params.id}`)
             },
             {
                 path: '/bookDetails/:id',
                 element: <PrivateRouter><BookDetails></BookDetails></PrivateRouter>,
-                loader: async({params})=> fetch(`http://localhost:5000/api/product/list/${params.id}`)
+                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/product/list/${params.id}`)
             },
             {
                 path: '/login',
@@ -95,7 +94,7 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/payment/:id",
                 element: <Payment></Payment>,
-                loader: async({params})=> fetch(`http://localhost:5000/api/booking/list/${params.id}`)
+                loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/booking/list/${params.id}`)
             },
             {
                 path: "/dashboard/alluser",

@@ -5,7 +5,7 @@ const useToken = email =>{
 
     useEffect( ()=>{
       if(email){
-        fetch(`http://localhost:5000/api/jwt/list?email=${email}`)
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/jwt/list?email=${email}`)
         .then(res => res.json())
         .then(data =>{
             if(data.accessToken)

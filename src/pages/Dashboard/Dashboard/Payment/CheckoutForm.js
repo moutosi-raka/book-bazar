@@ -1,7 +1,5 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
 import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({booking}) => {
@@ -18,7 +16,7 @@ const CheckoutForm = ({booking}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/api/payment/create/intent", {
+        fetch("https://book-bazar-server-moutosi-raka.vercel.app/api/payment/create/intent", {
           method: "POST",
           headers: { "Content-Type": "application/json"
         },
@@ -80,7 +78,7 @@ const CheckoutForm = ({booking}) => {
          transactionId: paymentIntent.id
       }
       //stored payment in database
-      fetch('http://localhost:5000/api/payment/create',
+      fetch('https://book-bazar-server-moutosi-raka.vercel.app/api/payment/create',
       {
         method: 'POST',
         headers: {

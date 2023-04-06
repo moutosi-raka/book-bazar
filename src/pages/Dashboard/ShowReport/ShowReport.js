@@ -15,13 +15,13 @@ const ShowReport = () => {
     const { data: Complaints = [], refetch } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/report/list`);
+            const res = await fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/report/list`);
             const data = await res.json();
             return data;
         }
     })
     const handleUpdateProduct =(report) =>{
-        fetch(`http://localhost:5000/api/report/update/${report.productId}`,
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/report/update/${report.productId}`,
         {
             method: 'PUT',
             headers: {

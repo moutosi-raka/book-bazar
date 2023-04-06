@@ -13,14 +13,14 @@ const AllSeller = () => {
     const {data: sellerUser = [], refetch} = useQuery({
         queryKey: ['user', role],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:5000/api/user/role?role=${role}`);
+            const res = await fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/user/role?role=${role}`);
             const data = await res.json();
             return data;
         }
     })
 
     const handleVerify = id =>{
-        fetch(`http://localhost:5000/api/user/seller/verify/${id}`,{
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/user/seller/verify/${id}`,{
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const AllSeller = () => {
         })
     }
     const handleDeleteSeller =(seller) =>{
-        fetch(`http://localhost:5000/api/user/delete/${seller._id}`,
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/user/delete/${seller._id}`,
         {
             method: 'DELETE',
             headers: {

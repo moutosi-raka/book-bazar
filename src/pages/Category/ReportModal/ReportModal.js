@@ -31,7 +31,7 @@ const ReportModal = () => {
         console.log('report', reportInfo)
 
 
-        fetch('http://localhost:5000/api/report/create',{
+        fetch('https://book-bazar-server-moutosi-raka.vercel.app/api/report/create',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

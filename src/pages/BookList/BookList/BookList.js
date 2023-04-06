@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData, useNavigation } from 'react-router-dom';
+import { useNavigation } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import BookCart from '../../Category/BookCart/BookCart';
 import Loading from '../../Loading/Loading';
@@ -17,7 +17,7 @@ const BookList = () => {
   const navigation = useNavigation();
 
   useEffect( ()=>{
-    fetch(`http://localhost:5000/api/category/list?search=${search}&page=${page}&size=${size}`)
+    fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/category/list?search=${search}&page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => {
           setCategories(data.products)

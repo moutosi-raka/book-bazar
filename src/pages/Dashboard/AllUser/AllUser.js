@@ -13,14 +13,14 @@ const AllUser = () => {
     const {data: buyerUser = [], refetch} = useQuery({
         queryKey: ['user', role],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:5000/api/user/role?role=${role}`);
+            const res = await fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/user/role?role=${role}`);
             const data = await res.json();
             return data;
         }
     })
 
     const handleDeleteBuyer =(buyer) =>{
-        fetch(`http://localhost:5000/api/user/delete/${buyer._id}`,
+        fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/user/delete/${buyer._id}`,
         {
             method: 'DELETE',
             headers: {

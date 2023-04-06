@@ -52,7 +52,7 @@ const SignUp = () => {
             userName: name,
             role : role
         }
-        fetch('http://localhost:5000/api/user/create',{
+        fetch('https://book-bazar-server-moutosi-raka.vercel.app/api/user/create',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

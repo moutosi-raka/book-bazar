@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firebase.config';
-import toast from 'react-hot-toast';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, signInWithPopup} from 'firebase/auth';
 
 
@@ -42,20 +41,7 @@ const AuthProvider = ({children}) => {
         return signOut(auth);
     }
 
-    // const handleReport = id =>{
-    //     fetch(`http://localhost:5000/category/report/${id}`,{
-    //         method: 'PUT',
-    //         headers: {
-    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data =>{
-    //         if(data.modifiedCount>0){
-    //             toast.success('report successfully');
-    //         }
-    //     })
-    // }
+ 
     
     useEffect( ()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{

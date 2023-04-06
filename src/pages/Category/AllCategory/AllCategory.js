@@ -10,7 +10,7 @@ const AllCategory = () => {
         .then(data => setCategories(data))
     },[])
     // useEffect( ()=>{
-    //     fetch('http://localhost:5000/category')
+    //     fetch('https://book-bazar-server-moutosi-raka.vercel.app/category')
     //     .then( res => res.json())
     //     .then(data => setCategories(data))
     // },[])

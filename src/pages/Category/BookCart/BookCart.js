@@ -8,26 +8,13 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const BookCart = ({ category  }) => {
-    const {img, _id, book_name, resale_price, original_price, location, Year_of_use , sellerName, description, phone , book_condition, verify} = category;
+    const {img, _id, book_name, resale_price, original_price, Year_of_use , sellerName,  book_condition, verify} = category;
     
     const {user,setBookProduct, setReportProduct} = useContext(AuthContext);
-    const [dbUser, isLoading] = useUser(user?.email);
+    const [ isLoading] = useUser(user?.email);
 
 
-    // const handleReport = id =>{
-    //     fetch(`http://localhost:5000/category/report/${id}`,{
-    //         method: 'PUT',
-    //         headers: {
-    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data =>{
-    //         if(data.modifiedCount>0){
-    //             toast.success('report successfully');
-    //         }
-    //     })
-    // }
+ 
     if(isLoading){
         return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
     }

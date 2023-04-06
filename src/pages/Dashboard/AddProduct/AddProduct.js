@@ -1,4 +1,3 @@
-import { Result } from 'postcss';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
@@ -50,7 +49,7 @@ const AddProduct = () => {
 
                 }
                 //saved seller info database
-                fetch('http://localhost:5000/api/product/create',{
+                fetch('https://book-bazar-server-moutosi-raka.vercel.app/api/product/create',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
