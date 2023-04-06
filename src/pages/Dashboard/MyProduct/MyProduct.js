@@ -82,6 +82,7 @@ const MyProduct = () => {
                             <th>price</th>
                             <th>Sold Status</th>
                             <th>Add Ads</th>
+                            <th>Report</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -93,6 +94,7 @@ const MyProduct = () => {
                             <td></td>
                             <td></td>
                             <td className='text-center text-2xl'>No Product</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -115,6 +117,7 @@ const MyProduct = () => {
                                 <th>
                                     {!myProduct.addADS && myProduct.report==='false' && <button onClick={() => handleAds(myProduct._id)} className="btn btn-primary text-white btn-xs ">Add ADS</button>}
                                 </th>
+                                <td> {myProduct.report==='true' && "Reported"}</td>
                                 <th>
                                     <label onClick={() => setDeleteProduct(myProduct)} htmlFor="confirmation-modal" className="btn bg-red-700 text-white btn-xs ">Delete</label>
 
