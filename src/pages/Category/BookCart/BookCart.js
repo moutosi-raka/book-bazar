@@ -8,13 +8,12 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const BookCart = ({ category  }) => {
-    const {img, _id, book_name, resale_price, original_price, Year_of_use , sellerName,  book_condition, verify} = category;
+    const {img, _id, book_name, resale_price, original_price,  Year_of_use , sellerName, book_condition, verify} = category;
     
     const {user,setBookProduct, setReportProduct} = useContext(AuthContext);
-    const [ isLoading] = useUser(user?.email);
+    const [dbUser, isLoading] = useUser(user?.email);
 
 
- 
     if(isLoading){
         return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
     }
