@@ -71,12 +71,12 @@ const SignUp = () => {
   
     return (
         <div className='my-20 flex justify-center items-center'>
-            <div className='p-8 shadow-2xl rounded-lg w-1/2'>
-                <h2 className='text-4xl font-bold text-center'>Sign Up</h2>
+            <div className='p-8 shadow-2xl rounded-lg w-1/2 '>
+                <h2 className='text-4xl font-bold text-center text-white'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Your Name</span>
+                            <span className="label-text text-white">Your Name</span>
                         </label>
                         <input type="text"
                             {...register("name", 
@@ -87,7 +87,7 @@ const SignUp = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">PhotoURL</span>
+                            <span className="label-text text-white">PhotoURL</span>
                         </label>
                         <input type="text"
                             {...register("photoURL")}
@@ -103,7 +103,7 @@ const SignUp = () => {
                     </select>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Email</span>
+                            <span className="label-text text-white">Email</span>
                         </label>
                         <input type="email"
                             {...register("email", 
@@ -114,7 +114,7 @@ const SignUp = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text text-white">Password</span>
                         </label>
                         <input type="password"
                             {...register("password", 
@@ -130,8 +130,8 @@ const SignUp = () => {
                     </div>
                     <input className='w-full btn my-8 text-white' type='submit' value="Sign Up" />
                 </form>
-                <p className='text-center'>Already have a account? <Link className='text-secondary' to="/login">Login</Link></p>
-                <div className="divider">OR</div>
+                <p className='text-center text-white'>Already have a account? <Link className='text-secondary' to="/login">Login</Link></p>
+                <div className="divider text-white">OR</div>
 
                      <GoogleSignUp></GoogleSignUp>
             </div>
