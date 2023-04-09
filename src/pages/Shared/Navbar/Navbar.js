@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import './Navbar.css'
@@ -31,7 +31,7 @@ const Navbar = () => {
   </>
   return (
    <div>
-     <div className='px-12  bg-slate-900 text-white'>
+     <div className='px-3 md:px-12  bg-slate-900 text-white'>
      
       <div className="navbar position-sticky justify-between">
         <div className="navbar-start">
@@ -44,7 +44,7 @@ const Navbar = () => {
            
             </ul>
           </div>
-          <h1 className=""><Link className='text-decoration-none text-2xl f-family-abril text-linear' to='/'>Book Bazar</Link></h1> 
+          <h1 className=""><Link className='text-decoration-none text-base md:text-2xl f-family-abril text-linear' to='/'>Book Bazar</Link></h1> 
           
         </div>
         <div className=" hidden lg:flex navbar-end">
