@@ -1,0 +1,63 @@
+[
+    {  
+        "category_id": 1,
+        "category_name": "Nobel",
+        "location": "Dhaka",
+        "resale_price": "200",
+        "original_price": "300",
+        "book_name": "The Stranger",
+        "Year_of_use": "3 months",
+        "img": "https://i.ibb.co/4Sj99Dp/nobel.jpg"
+    },
+    {  
+        "category_id": 1,
+        "category_name": "Nobel",
+        "location": "Dhaka",
+        "resale_price": "170",
+        "original_price": "250",
+        "book_name": "The Old Man and the Sea",
+        "Year_of_use": "2 months",
+        "img": "https://i.ibb.co/4Sj99Dp/nobel.jpg"
+    },
+    {
+        "category_id": 2,
+        "category_name": "Poetry",
+        "location": "Dhaka",
+        "resale_price": "200",
+        "original_price": "300",
+        "book_name": "Milk & Honey",
+        "Year_of_use": "3 months",
+        "img": "https://i.ibb.co/WPRk2YJ/poetry.jpg"
+    },
+    {
+        "category_id": 2,
+        "category_name": "Poetry",
+        "location": "Khulna",
+        "resale_price": "100",
+        "original_price": "200",
+        "book_name": "The Sun & Her Flowers",
+        "Year_of_use": "1 months",
+        "img": "https://i.ibb.co/WPRk2YJ/poetry.jpg"
+    },
+    {
+        "category_id": 3,
+        "category_name": "Biograpy",
+        "location": "Sylhet",
+        "resale_price": "100",
+        "original_price": "200",
+        "book_name": "Steve Jobs",
+        "Year_of_use": "1 months",
+        "img": "https://i.ibb.co/njgrMcy/biography.jpg"
+    },
+    {
+    
+        "category_id": 3,
+        "category_name": "Biograpy",
+        "location": "CTG",
+        "resale_price": "130",
+        "original_price": "200",
+        "book_name": "The Light We Carry",
+        "Year_of_use": "5 months",
+        "img": "https://i.ibb.co/njgrMcy/biography.jpg"
+    }
+]

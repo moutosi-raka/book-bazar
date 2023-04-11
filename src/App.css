@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.f-family-abril{
+    font-family: 'Abril Fatface', cursive;
+}
+
+.text-linear{
+    background: -webkit-linear-gradient(#c75dbb, #f0eff0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
