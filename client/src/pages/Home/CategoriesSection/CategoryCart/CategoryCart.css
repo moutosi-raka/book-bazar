@@ -1,0 +1,10 @@
+.glass{
+    background: rgb(30, 29, 29);
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, .8),  rgba(255, 255, 255, .3));
+    z-index: 3;
+    backdrop-filter: blur(2rem);
+}
+
+.glass h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

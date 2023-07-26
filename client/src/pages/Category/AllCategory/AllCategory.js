@@ -29,7 +29,7 @@ const AllCategory = () => {
         </div>
         <div className='my-12 w-11/12 mx-auto'>
         
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-12'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 my-12'>
         {
           categories.map(category => 
             category.category_id && <CategoryCart
