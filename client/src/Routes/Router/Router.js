@@ -34,12 +34,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/booklist',
-                element: <PrivateRouter><BookList></BookList></PrivateRouter>,
+                element: <BookList></BookList>
            
             },
             {
                 path: '/category',
-                element: <PrivateRouter><AllCategory></AllCategory></PrivateRouter>,
+                element: <AllCategory></AllCategory>
                
             },
             {
