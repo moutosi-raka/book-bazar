@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { TbCurrencyTaka } from "react-icons/tb";
 import { MdPhoneAndroid , MdEmail} from "react-icons/md";
 import book from '../../assets/banner/book-catroon.png'
@@ -7,8 +7,9 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const BookDetails = () => {
     
-    const {setBookProduct, setReportProduct} = useContext(AuthContext);
+    const {setBookProduct, user,  setReportProduct} = useContext(AuthContext);
     const bookDetails = useLoaderData();
+    const navigate = useNavigate();
     const { img,  book_name, resale_price, original_price, location, Year_of_use, sellerName, description, phone, book_condition, author_name, sellerEmail } = bookDetails;
     
    
@@ -44,7 +45,14 @@ const BookDetails = () => {
 
                   <button title='Book Now' className='btn btn-primary btn-sm text-white mr-4 mt-2'><label 
                  htmlFor="booking-modal" className='cursor-pointer text-sm'
-                 onClick={()=> setBookProduct(bookDetails)}
+                 onClick={()=> {
+                    if(user){
+                        setBookProduct(bookDetails)
+                    }
+                    else{
+                        navigate('/login')
+                    }
+                   }}
                  >Book Now</label></button> 
                   <label 
                    htmlFor="report-modal"

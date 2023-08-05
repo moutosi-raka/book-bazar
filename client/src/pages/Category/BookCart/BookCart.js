@@ -14,9 +14,9 @@ const BookCart = ({ category  }) => {
     const [dbUser, isLoading] = useUser(user?.email);
 
 
-    if(isLoading){
-        return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
-    }
+    // if(isLoading){
+    //     return <div className='h-[400px] flex justify-center items-center'><div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div> 
+    // }
     return (
         <div className="max-w-lg p-4 shadow-purple-400  shadow-lg border-2 border-purple-400 rounded-lg bg-white">
         <div className="flex justify-between pb-4 border-bottom">

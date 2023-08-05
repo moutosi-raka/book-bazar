@@ -22,11 +22,11 @@ const AdvertiseCart = ({item}) => {
               
                 <h3 className="text-base font-semibold  mb-3">{book_name}</h3>
                <div className='flex justify-between'>
-                <p className='text-xs text-base-300' >Sell <TbCurrencyTaka className='inline'/>{resale_price}</p>
+                <p className='text-xs text-base-300' ><TbCurrencyTaka className='inline'/>{resale_price}</p>
                </div>
                 <div className='text-xs text-base-300 mb-8'>
-                <p>Condition {book_condition}</p>
                 <p className="leading-snug dark:text-gray-400"><WiTime3 className='inline mr-1'/>{Year_of_use}</p>
+                <p>Condition {book_condition}</p>
                 </div>
                 <button className='card-btn'><Link to={`/bookDetails/${_id}`}>See details</Link></button>
                

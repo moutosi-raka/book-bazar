@@ -44,12 +44,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <PrivateRouter><Category></Category></PrivateRouter>,
+                element: <Category></Category>,
                 loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/category/list/${params.id}`)
             },
             {
                 path: '/bookDetails/:id',
-                element: <PrivateRouter><BookDetails></BookDetails></PrivateRouter>,
+                element: <BookDetails></BookDetails>,
                 loader: async({params})=> fetch(`https://book-bazar-server-moutosi-raka.vercel.app/api/product/list/${params.id}`)
             },
             {
