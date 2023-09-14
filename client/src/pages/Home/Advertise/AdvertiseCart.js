@@ -16,6 +16,8 @@ const AdvertiseCart = ({item}) => {
         //         <button className='btn btn-primary text-white'><Link to={`/bookDetails/${_id}`}>See details</Link></button>
         //     </div>
         // </div>
+        <div>
+            <Link to={`/bookDetails/${_id}`}>
         <div className="advertiseCard">        
                 <img src={img} alt="" className="" />
             <div className="advertiseCard-body">
@@ -28,9 +30,11 @@ const AdvertiseCart = ({item}) => {
                 <p className="leading-snug dark:text-gray-400"><WiTime3 className='inline mr-1'/>{Year_of_use}</p>
                 <p>Condition {book_condition}</p>
                 </div>
-                <button className='card-btn'><Link to={`/bookDetails/${_id}`}>See details</Link></button>
+                {/* <button className='card-btn'><Link to={`/bookDetails/${_id}`}>See details</Link></button> */}
                
             </div>
+    </div>
+    </Link>
     </div>
     );
 };
