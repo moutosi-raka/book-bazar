@@ -44,7 +44,7 @@ const Navbar = () => {
            
             </ul>
           </div>
-          <h1 className=""><Link className='text-decoration-none text-base md:text-2xl f-family-abril text-linear' to='/'>Book Bazar</Link></h1> 
+          <h1 className=""><Link className='text-decoration-none text-base md:text-2xl font-bold text-linear' to='/'>Book Bazar</Link></h1> 
           
         </div>
         <div className=" hidden lg:flex navbar-end">
@@ -72,6 +72,13 @@ const Navbar = () => {
                   <Link to='/dashboard' className="justify-between">
                   <button  className='p-3 hover:bg-slate-200 rounded w-full text-left'>
                   Dashboard
+                  </button>
+                  </Link>  
+                </li>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                  <button  className='p-3 hover:bg-slate-200 rounded w-full text-left'>
+                  Profile
                   </button>
                   </Link>  
                 </li>

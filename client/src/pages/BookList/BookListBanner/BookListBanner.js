@@ -4,10 +4,10 @@ import book from '../../../assets/banner/book-catroon.png'
 const BookListBanner = ({handleSearch}) => {
     return (
         <div>
-            <div className="hero banner px-12"
+            <div className="hero banner px-12 py-8"
             >
                 <div className="hero-content flex-col lg:flex-row-reverse md:w-[60%] ">
-                    <img src={book} alt='' className="hidden lg:block w-32 rounded-lg shadow-2xl" />
+                    {/* <img src={book} alt='' className="hidden lg:block w-32 rounded-lg shadow-2xl" /> */}
                     <div>
                         <form onSubmit={handleSearch} className='block md:flex items-center'>
                             <div className="form-control">

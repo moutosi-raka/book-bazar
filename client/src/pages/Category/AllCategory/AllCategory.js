@@ -21,7 +21,7 @@ const AllCategory = () => {
         <div>
             <div className="hero banner px-12">
             <div className="hero-content flex-col lg:flex-row-reverse w-[60%] ">
-                <img src={book} alt='' className="hidden lg:block w-32 rounded-lg shadow-2xl" />
+                {/* <img src={book} alt='' className="hidden lg:block w-32 rounded-lg shadow-2xl" /> */}
                 <div>
                 <h1 className='my-8 text-3xl font-bold text-center text-linear'>Book Categories</h1>     
                 </div>

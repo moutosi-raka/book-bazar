@@ -57,7 +57,14 @@ const BookDetails = () => {
                   <label 
                    htmlFor="report-modal"
                     className='btn btn-primary btn-sm text-white mt-2' 
-                    onClick={()=>  setReportProduct(bookDetails)}
+                    onClick={()=> {
+                        if(user){
+                            setReportProduct(bookDetails)
+                        }
+                        else{
+                            navigate('/login')
+                        }
+                       }}
                  > Report</label>
                   </div>
                 </div>

@@ -5,13 +5,14 @@ import { FaEye } from "react-icons/fa";
 import { WiTime3 } from "react-icons/wi";
 import useUser from '../../../hooks/useUser/useUser';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BookCart = ({ category  }) => {
     const {img, _id, book_name, resale_price, original_price,  Year_of_use , sellerName, book_condition, verify} = category;
     
     const {user,setBookProduct, setReportProduct} = useContext(AuthContext);
     const [dbUser, isLoading] = useUser(user?.email);
+    const navigate = useNavigate();
 
 
     // if(isLoading){
@@ -55,14 +56,28 @@ const BookCart = ({ category  }) => {
                  </div>
                  <button title='Book Now' className='w-28 font-semibold rounded-full  py-1 border bg-primary text-white'><label 
                  htmlFor="booking-modal" className='cursor-pointer text-sm'
-                 onClick={()=> setBookProduct(category)}
+                 onClick={()=> {
+                    if(user){
+                        setBookProduct(category)
+                    }
+                    else{
+                        navigate('/login')
+                    }
+                   }}
                  >Book Now</label></button>
                
                <button  className='w-20 font-semibold rounded-full cursor-pointer  py-1 border bg-primary text-white text-center'>
                  <label 
                  htmlFor="report-modal"
                  className='cursor-pointer text-sm'
-                 onClick={()=> setReportProduct(category)}
+                 onClick={()=> {
+                    if(user){
+                        setReportProduct(category)
+                    }
+                    else{
+                        navigate('/login')
+                    }
+                   }}
                  >Report</label>
                  </button>
              </div>

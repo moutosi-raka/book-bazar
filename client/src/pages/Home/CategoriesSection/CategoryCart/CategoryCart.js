@@ -11,7 +11,7 @@ const CategoryCart = ({category}) => {
             <Link to={`/category/${category_id}`}>
         <div className='glass w-[15rem] md:w-[15rem] mx-auto shadow-primary shadow-md rounded-lg'>
             <div className='h-28 py-8 rounded-t-lg '>
-            <h2 className=" text-2xl md:text-3xl text-white font-bold text-center my-auto">{category_name}</h2>
+            <h2 className=" text-xl md:text-2xl text-white font-bold text-center my-auto">{category_name}</h2>
             {/* <img className=' h-40 object-cover w-full' src={category_img} alt='' /> */}
             </div>
             {/* <div className='py-3'>

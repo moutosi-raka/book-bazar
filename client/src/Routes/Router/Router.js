@@ -21,6 +21,7 @@ import SignUp from "../../pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import Profile from "../../pages/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/profile',
+                element: <Profile></Profile>
             }
         ]
     },
